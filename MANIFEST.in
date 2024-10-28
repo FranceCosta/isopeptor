@@ -1,0 +1,8 @@
+# Source files
+recursive-include src/isopeptor/resources/jess *.c
+recursive-include src/isopeptor/resources/jess *.h
+include src/isopeptor/resources/jess/Makefile
+
+# Documentation
+include README.md
+include LICENSE
