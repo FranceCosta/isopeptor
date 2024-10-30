@@ -1,0 +1,5 @@
+_pyproject.toml
+src/isopeptor.egg-info
+src/isopeptor/resources/jess/*.o
+src/isopeptor/resources/jess/jess
+build/

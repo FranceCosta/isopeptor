@@ -3,6 +3,12 @@ recursive-include src/isopeptor/resources/jess *.c
 recursive-include src/isopeptor/resources/jess *.h
 include src/isopeptor/resources/jess/Makefile
 
+# Data
+recursive-include src/isopeptor/data/*
+
+# Model
+include src/isopeptor/model/model.pkl
+
 # Documentation
 include README.md
 include LICENSE
