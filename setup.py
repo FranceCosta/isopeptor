@@ -1,4 +1,4 @@
-#! /usr/env/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from setuptools import setup, Extension, find_packages
@@ -38,10 +38,24 @@ class CustomBuildExt(build_ext):
         if not exec_path.exists():
             raise RuntimeError("Jess executable not found after compilation")
         print("Jess built succesgully")
-        
         shutil.copy2(exec_path, dest_dir)
         os.chmod(dest_dir / 'jess', 0o755)
-
+        
+        """
+        # Create jess input file
+        print("Creating structures file")
+        data_dir = Path(__file__).parent / 'src' / 'isopeptor' / 'resources' / 'data'
+        if not data_dir.is_dir():
+            raise RuntimeError("Data dir not found")
+        structure_dir = data_dir / 'template_structures'
+        structure_file = data_dir / "templates"
+        with open(structure_file, "wt") as fh:
+            for file in os.listdir(structure_dir):
+                file_path = Path(structure_dir) / file
+                fh.write(f"{str(file_path.resolve())}\n")
+                #fh.write(f"../template_structures/{file}\n")
+        """
+        
         build_ext.run(self)
 
 setup(
@@ -54,6 +68,10 @@ setup(
     # Package structure
     package_dir={'': 'src'},
     packages=find_packages(where='src'),
+
+    package_data={
+    "isopeptor": ["resources/data/*"],
+    },
     
     # Include non-Python files
     include_package_data=True,

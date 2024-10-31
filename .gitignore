@@ -5,3 +5,4 @@ src/isopeptor/resources/jess/jess
 build/
 **__pycache__
 tests.ipynb
+data/resources/structures
