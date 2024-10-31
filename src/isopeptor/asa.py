@@ -37,7 +37,7 @@ def calculate_asa(pdb_file_path : str, residues : list, chain : str) -> float:
         res_indeces = [i for i, atom in enumerate(structure) if atom.res_id == res_id]
         res_name = structure[res_indeces[0]].res_name
         if res_name not in MAX_ASA["rost_sander"].keys():
-            raise ValueError(f"{res_name} not in {MAX_ASA["rost_sander"].keys()}")
+            raise ValueError(f"{res_name} not in {MAX_ASA['rost_sander'].keys()}")
 
         r_asa = sum([structure_sasa[i] for i in res_indeces]) / MAX_ASA["rost_sander"][res_name]
         tot_r_asa += r_asa
