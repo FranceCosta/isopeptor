@@ -2,6 +2,8 @@
 
 Isopeptide bond prediction from .pdb structure. Method described in "A global survey of intramolecular isopeptide bonds".
 
+The method can be accessed via [this google colab]() or installed and run locally.
+
 ## Installation
 
 ```
@@ -31,8 +33,6 @@ To redirect the output to a `.tsv` file use:
 isopeptor tests/data/test_structures/ > output.tsv
 ```
 
-Specifying --fixed_r_asa with a relative solvent accessibile area between 0 and 1 allows skipping its time-consuming calculation. The downside is that the prediction is less reliable. It is useful for very high throughput screenings where high precision is not required.
-
 ### Full command line options:
 
 ```
@@ -49,6 +49,8 @@ options:
   --fixed_r_asa FIXED_R_ASA
                         Fixes the relative solvent accessible area using a value between 0 and 1 to speed up the prediction.
 ```
+
+Specifying --fixed_r_asa with a relative solvent accessibile area between 0 and 1 allows skipping its time-consuming calculation. The downside is that the prediction is less reliable. It is useful for very high throughput screenings where high precision is not required.
 
 ### Python API
 
@@ -74,6 +76,12 @@ Calculate solvent accessible area for a more accurate (and slow) prediction:
 ```
 >>> i = Isopeptide("tests/data/test_structures", distance=1.5)
 >>> i.predict()
+protein_name	chain	r1_bond	r_cat	r2_bond	r1_bond_name	r_cat_name	r2_bond_name	bond_type	rmsd	r_asa	probability	template
+8beg        	A    	590    	636  	729    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.004	0.987      	8beg_A_590_636_729
+7woi        	A    	57     	158  	195    	LYS         	GLU       	ASN         	CnaB-like	0.001	0.019	0.987      	7woi_A_57_158_195 
+5dz9        	A    	556    	606  	703    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.009	0.987      	4z1p_A_3_53_150   
+4z1p        	A    	3      	53   	150    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.009	0.987      	4z1p_A_3_53_150   
+6to1_af     	A    	13     	334  	420    	LYS         	ASP       	ASN         	CnaA-like	0.346	0.002	0.835      	2x9z_A_193_241_318
 ```
 
 ## Test
