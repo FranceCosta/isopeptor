@@ -26,8 +26,9 @@ class BondElement:
         self.r1_bond = r1_bond
         self.r_cat = r_cat
         self.r2_bond = r2_bond
+        self.rASA: float | None = None
 
     def __repr__(self):
         s = f"BondElement(pdb_file={self.pdb_file}, protein_name={self.protein_name}, rmsd={self.rmsd}, template={self.template}, "+\
-            f"chain={self.chain}, r1_bond={self.r1_bond}, r_cat={self.r_cat}, r2_bond={self.r2_bond})"
+            f"chain={self.chain}, r1_bond={self.r1_bond}, r_cat={self.r_cat}, r2_bond={self.r2_bond}, rASA={self.rASA})"
         return s

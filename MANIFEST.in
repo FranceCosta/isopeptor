@@ -4,11 +4,11 @@ recursive-include src/isopeptor/resources/jess *.h
 include src/isopeptor/resources/jess/Makefile
 
 # Data
-recursive-include src/isopeptor/data/template_structures *.pdb
-recursive-include src/isopeptor/data/templates
+recursive-include src/isopeptor/resources/data/template_structures *.pdb
+recursive-include src/isopeptor/resources/data/templates
 
 # Model
-include src/isopeptor/model/model.pkl
+include src/isopeptor/resources/model/model.pkl
 
 # Documentation
 include README.md

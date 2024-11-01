@@ -1,11 +1,14 @@
 #! /usr/env/python
 # -*- coding: utf-8 -*-
 
-from isopeptor.jess_wrapper import _run_jess
-from isopeptor.asa import calculate_asa
 import re
 from typing import List
+import warnings
+import numpy as np
+from isopeptor.jess_wrapper import _run_jess
+from isopeptor.asa import _get_structure_asa
 from isopeptor.bond import BondElement 
+from isopeptor.constants import MAX_ASA
 
 class Isopeptide:
     """
@@ -21,13 +24,24 @@ class Isopeptide:
             distance: float that specifies permissivity of jess search
             jess_output: None | str that stores jess raw output for debug purposes
             isopeptide_bonds: list that stores isopeptide bonds as BondElement elements
+            fixed_rASA: float | None which ranges between 0 and 1 that fixes rASA allowing to skip its calculation
 
     """
-    def __init__(self, pdb_dir: str, distance: float = 1.5):
+    def __init__(self, pdb_dir: str, distance: float = 1.5, fixed_rASA: float | None = None):
+        """
+        
+            Raises
+               ValueError if fixed_rASA not between 0 and 1
+        
+        """
         self.pdb_dir: str = pdb_dir
         self.distance: float = distance
         self.jess_output: str | None = None
         self.isopeptide_bonds: List[BondElement] = []
+        self.fixed_rASA: float | None = fixed_rASA
+        if self.fixed_rASA != None:
+            if self.fixed_rASA < 0 or self.fixed_rASA > 1:
+                raise ValueError(f"fixed_rASA is not in 0-1 range. Found: {self.fixed_rASA}")
 
     def predict(self):
         """
@@ -40,7 +54,17 @@ class Isopeptide:
 
         self.jess_output = _run_jess(self.pdb_dir, self.distance)
         self._parse_jess_output()
-        
+        if len(self.isopeptide_bonds) == 0:
+            warnings.warn("No isopeptide bond predictions detected. Try increasing the distance parameter.", UserWarning)
+            return
+        self._reduce_redundant()
+        if self.fixed_rASA != None:
+            for bond in self.isopeptide_bonds:
+                bond.rASA = self.fixed_rASA
+        else:
+            self._calc_rasa()
+        self._infer()
+
     def _parse_jess_output(self):
         """
 
@@ -85,10 +109,40 @@ class Isopeptide:
 
             Reduces redundant isopeptide bond predictions by keeping prediction with lower RMSD.
 
-            Raises:
-                ValueError if no isopeptide bond predictions are detected in self.isopeptide_bonds
+        """
+        bonds = self.isopeptide_bonds
+        filtered_bonds = []
+        for protein_name in set([b.protein_name for b in bonds]):
+            filtered_bonds.append(sorted([b for b in bonds if b.protein_name == protein_name], key = lambda b: (b.protein_name, b.r1_bond, b.r_cat, b.r2_bond, b.rmsd))[0])
+        self.isopeptide_bonds = filtered_bonds
+
+    def _calc_rasa(self):
+        """
+
+            Calcolate rASA for every isopeptide bond in every structure
 
         """
-        if len(self.isopeptide_bonds) == 0:
-            raise ValueError("No isopeptide bond predictions detected.")
-        
+        bonds = self.isopeptide_bonds
+        for pdb_file in set([b.pdb_file for b in bonds]):
+            # Get asa and structure atom array pdb file
+            structure_sasa, structure = _get_structure_asa(pdb_file)
+            # Get asa of isopeptide residues
+            for bond in [b for b in bonds if b.pdb_file == pdb_file]:
+                isopep_residues = [bond.r1_bond, bond.r_cat, bond.r2_bond]
+                tmp_r_asa = 0
+                for res_id in isopep_residues:
+                    res_indeces = [i for i, atom in enumerate(structure) if atom.res_id == res_id and atom.chain_id == bond.chain]
+                    res_name = structure[res_indeces[0]].res_name
+                    if res_name not in MAX_ASA["rost_sander"].keys():
+                        raise ValueError(f"{res_name} not in {MAX_ASA['rost_sander'].keys()}")
+                    # Normalise ASA by residue surface area
+                    r_asa = sum([structure_sasa[i] for i in res_indeces]) / MAX_ASA["rost_sander"][res_name]
+                    tmp_r_asa += r_asa
+                bond.rASA = "%.3f" % round(tmp_r_asa / 3, 3)
+    
+    def _infer(self):
+        """
+
+            Infer presence of isoeptide bond using logistic regression model
+
+        """
