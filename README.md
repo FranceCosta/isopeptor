@@ -8,8 +8,10 @@ Package for isopeptide bond prediction.
 
 ## Usage
 
-On the command line:
-`isopeptor tests/data/test_structures/`
+From the command line:
+```
+isopeptor tests/data/test_structures/
+```
 
 Output:
 ```
@@ -19,4 +21,27 @@ protein_name    chain   r1_bond r_cat   r2_bond r1_bond_name    r_cat_name      
 5dz9            A       556     606     703     LYS             ASP             ASN             CnaA-like       0.0     0.009   0.987           4z1p_A_3_53_150   
 8beg            A       590     636     729     LYS             ASP             ASN             CnaA-like       0.0     0.004   0.987           8beg_A_590_636_729
 4z1p            A       3       53      150     LYS             ASP             ASN             CnaA-like       0.0     0.009   0.987           4z1p_A_3_53_150
+```
+
+To redirect the output to a `.tsv` file use:
+
+```
+isopeptor tests/data/test_structures/ > output.tsv
+```
+
+## Advanced usage
+
+```
+usage: isopeptor [-h] [--distance DISTANCE] [--fixed_r_asa FIXED_R_ASA] path_to_pdb_files
+
+Run isopeptide bond prediction from command line. Usage: isopeptor path/to pdb files/ > isopeptide_bonds.csv
+
+positional arguments:
+  path_to_pdb_files     Path to directory containing .pdb files.
+
+options:
+  -h, --help            show this help message and exit
+  --distance DISTANCE   Specifies permissivity of jess search. The higher, the more permissive.
+  --fixed_r_asa FIXED_R_ASA
+                        Fixes the relative solvent accessible area using a value between 0 and 1 to speed up the prediction.
 ```
