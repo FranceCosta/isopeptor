@@ -6,6 +6,8 @@ import numpy as np
 import os
 from pathlib import Path
 import warnings
+import warnings
+warnings.filterwarnings("ignore")
 
 CLF = None
 
@@ -15,8 +17,7 @@ def get_model():
         model_path = Path(__file__).parent / "resources" / "model" / "model.pkl"
         if not os.path.isfile(model_path):
             raise ValueError("Model file not found.")
-        with warnings.catch_warnings(action="ignore"):
-            CLF = joblib.load(model_path)
+        CLF = joblib.load(model_path)
     return CLF
 
 def _predict(rmsd:float, r_asa:float)->float:

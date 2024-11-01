@@ -66,6 +66,33 @@ class Isopeptide:
             self._calc_rasa()
         self._infer()
 
+    def print_tabular(self):
+        """
+        
+            Print isopeptide bonds in a tabular format
+        
+        """
+        print(
+            "\t".join(
+                [
+                "protein_name", "chain", "r1_bond", "r_cat", 
+                "r2_bond", "rmsd", "r_asa", "probability"
+                ]
+            )
+        )
+        for bond in self.isopeptide_bonds:
+            print(
+                "\t".join(
+                    [
+                        str(i) for i in
+                            [
+                                bond.protein_name, bond.chain, bond.r1_bond, bond.r_cat, 
+                                bond.r2_bond, bond.rmsd, bond.r_asa, bond.probability
+                            ]
+                    ]
+                )
+            )
+
     def _parse_jess_output(self):
         """
 
@@ -139,7 +166,7 @@ class Isopeptide:
                     # Normalise ASA by residue surface area
                     r_asa = sum([structure_sasa[i] for i in res_indeces]) / MAX_ASA["rost_sander"][res_name]
                     tmp_r_asa += r_asa
-                bond.r_asa = "%.3f" % round(tmp_r_asa / 3, 3)
+                bond.r_asa = round(tmp_r_asa / 3, 3)
     
     def _infer(self):
         """
