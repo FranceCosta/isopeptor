@@ -28,6 +28,25 @@ class Isopeptide:
             isopeptide_bonds: list that stores isopeptide bonds as BondElement elements
             fixed_r_asa: float | None which ranges between 0 and 1 that fixes r_asa allowing to skip its calculation
 
+        Usage:
+            
+            Use a fixed solvent accessible area for a quick prediction:
+            >>> from isopeptor.isopeptide import Isopeptide
+            >>> i = Isopeptide("tests/data/test_structures", distance=1.5, fixed_r_asa=0.1)
+            >>> i.predict()
+            >>> i.isopeptide_bonds[0]
+            BondElement(pdb_file=/nfs/research/agb/research/francesco/projects/20241024_isopeptor_v1/tests/data/test_structures/8beg.pdb, protein_name=8beg, rmsd=0.0, template=8beg_A_590_636_729, chain=A, r1_bond=590, r_cat=636, r2_bond=729, r1_bond_name=LYS, r_cat_name=ASP, r2_bond_name=ASN, bond_type=CnaA-like, r_asa=0.1, probability=0.984)
+            >>> i.print_tabular()
+            protein_name        chain   r1_bond r_cat   r2_bond r1_bond_name    r_cat_name      r2_bond_name    bond_type       rmsd    r_asa   probability     template
+            8beg                A       590     636     729     LYS             ASP             ASN             CnaA-like       0.0     0.1     0.984           8beg_A_590_636_729
+            7woi                A       57      158     195     LYS             GLU             ASN             CnaB-like       0.001   0.1     0.984           7woi_A_57_158_195 
+            5dz9                A       556     606     703     LYS             ASP             ASN             CnaA-like       0.0     0.1     0.984           4z1p_A_3_53_150   
+            4z1p                A       3       53      150     LYS             ASP             ASN             CnaA-like       0.0     0.1     0.984           4z1p_A_3_53_150   
+            6to1_af             A       13      334     420     LYS             ASP             ASN             CnaA-like       0.346   0.1     0.795           2x9z_A_193_241_318
+                    
+            Calculate solvent accessible area for a more accurate (and slow) prediction
+            >>> i = Isopeptide("tests/data/test_structures", distance=1.5)
+            >>> i.predict()
     """
     def __init__(self, pdb_dir: str, distance: float = 1.5, fixed_r_asa: float | None = None):
         """
@@ -68,6 +87,8 @@ class Isopeptide:
             self._calc_rasa()
         # Make prediction with linear regression
         self._infer()
+        # Sort based on probability
+        self.isopeptide_bonds.sort(key=lambda x: (x.probability, x.protein_name), reverse=True)
         # Infer type of bond
         self._infer_type()
 
@@ -191,3 +212,7 @@ class Isopeptide:
         """
         for bond in self.isopeptide_bonds:
             bond.bond_type = BOND_TYPE.get(bond.template, None)
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(report=True, optionflags=doctest.NORMALIZE_WHITESPACE)

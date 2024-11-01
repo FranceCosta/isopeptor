@@ -31,6 +31,8 @@ isopeptor tests/data/test_structures/ > output.tsv
 
 ## Advanced usage
 
+### Full command line options
+
 ```
 usage: isopeptor [-h] [--distance DISTANCE] [--fixed_r_asa FIXED_R_ASA] path_to_pdb_files
 
@@ -44,4 +46,17 @@ options:
   --distance DISTANCE   Specifies permissivity of jess search. The higher, the more permissive.
   --fixed_r_asa FIXED_R_ASA
                         Fixes the relative solvent accessible area using a value between 0 and 1 to speed up the prediction.
+```
+
+### Python API
+
+```
+
+
+```
+
+## Test
+
+```
+python -m unittest discover -s tests -p "test_isopeptide.py"
 ```
