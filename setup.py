@@ -65,7 +65,9 @@ setup(
     install_requires=[
         'numpy',
         'pandas',
-        'biotite'
+        'biotite',
+        'joblib',
+        'scikit-learn'
     ],
     
     # Development dependencies
