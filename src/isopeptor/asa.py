@@ -7,7 +7,7 @@ import numpy as np
 
 MAX_ASA = { "rost_sander": { "LYS": 205, "ASP": 163, "GLU": 194, "ASN": 157}}
 
-def calculate_asa(pdb_file_path : str, residues : list, chain : str) -> float:
+def calculate_asa(pdb_file_path: str, residues: list, chain: str) -> float:
     """
 
         Calculate rASA

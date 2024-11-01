@@ -4,7 +4,7 @@
 import subprocess
 from pathlib import Path
 
-def run_jess(pdb_dir : str, distance : float) -> str:
+def _run_jess(pdb_dir: str, distance: float) -> str:
     """
     
         Runs Jess using stored isopeptide bond templates. Only intrachain matches are considered. In case of
