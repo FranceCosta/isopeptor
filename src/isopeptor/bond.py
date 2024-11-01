@@ -17,7 +17,11 @@ class BondElement:
             r2_bond: residue number of residue 2 involved in bond
 
     """
-    def __init__(self, pdb_file: str, protein_name: str, rmsd: float, template: str, chain: str, r1_bond: int, r_cat: int, r2_bond: int):
+    def __init__(
+        self, pdb_file: str, protein_name: str, rmsd: float, template: str,
+        chain: str, r1_bond: int, r_cat: int, r2_bond: int,
+        r1_bond_name: str, r_cat_name: str, r2_bond_name: str
+        ):
         self.pdb_file = pdb_file
         self.protein_name = protein_name
         self.rmsd = rmsd
@@ -26,11 +30,15 @@ class BondElement:
         self.r1_bond = r1_bond
         self.r_cat = r_cat
         self.r2_bond = r2_bond
+        self.r1_bond_name = r1_bond_name
+        self.r_cat_name = r_cat_name
+        self.r2_bond_name = r2_bond_name
         self.r_asa: float | None = None
         self.probability: float | None = None
 
     def __repr__(self):
         s = f"BondElement(pdb_file={self.pdb_file}, protein_name={self.protein_name}, rmsd={self.rmsd}, template={self.template}, "+\
-            f"chain={self.chain}, r1_bond={self.r1_bond}, r_cat={self.r_cat}, r2_bond={self.r2_bond}, r_asa={self.r_asa}, "+\
-            f"probability={self.probability})"
+            f"chain={self.chain}, r1_bond={self.r1_bond}, r_cat={self.r_cat}, r2_bond={self.r2_bond}, "+\
+            f"r1_bond_name={self.r1_bond_name}, r_cat_name={self.r_cat_name}, r2_bond_name={self.r2_bond_name}, "+\
+            f"bond_type={self.bond_type}, r_asa={self.r_asa}, probability={self.probability})"
         return s

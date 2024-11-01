@@ -9,6 +9,7 @@ from isopeptor.jess_wrapper import _run_jess
 from isopeptor.asa import _get_structure_asa
 from isopeptor.bond import BondElement 
 from isopeptor.constants import MAX_ASA
+from isopeptor.constants import BOND_TYPE
 from isopeptor.model import _predict
 
 class Isopeptide:
@@ -40,6 +41,7 @@ class Isopeptide:
         self.jess_output: str | None = None
         self.isopeptide_bonds: List[BondElement] = []
         self.fixed_r_asa: float | None = fixed_r_asa
+        self.bond_type: str | None = None
         if self.fixed_r_asa != None:
             if self.fixed_r_asa < 0 or self.fixed_r_asa > 1:
                 raise ValueError(f"fixed_r_asa is not in 0-1 range. Found: {self.fixed_r_asa}")
@@ -64,7 +66,10 @@ class Isopeptide:
                 bond.r_asa = self.fixed_r_asa
         else:
             self._calc_rasa()
+        # Make prediction with linear regression
         self._infer()
+        # Infer type of bond
+        self._infer_type()
 
     def print_tabular(self):
         """
@@ -72,26 +77,21 @@ class Isopeptide:
             Print isopeptide bonds in a tabular format
         
         """
-        print(
-            "\t".join(
-                [
-                "protein_name", "chain", "r1_bond", "r_cat", 
-                "r2_bond", "rmsd", "r_asa", "probability"
-                ]
-            )
-        )
+        headers = [
+        "protein_name", "chain", "r1_bond", "r_cat", "r2_bond",
+        "r1_bond_name", "r_cat_name", "r2_bond_name", "bond_type",
+        "rmsd", "r_asa", "probability", "template"
+        ]
+        column_widths = [max(len(header), max(len(str(getattr(bond, header))) for bond in self.isopeptide_bonds)) for header in headers]
+        print("\t".join(headers))
         for bond in self.isopeptide_bonds:
-            print(
-                "\t".join(
-                    [
-                        str(i) for i in
-                            [
-                                bond.protein_name, bond.chain, bond.r1_bond, bond.r_cat, 
-                                bond.r2_bond, bond.rmsd, bond.r_asa, bond.probability
-                            ]
-                    ]
-                )
-            )
+            row = [
+                bond.protein_name, bond.chain, bond.r1_bond, bond.r_cat, bond.r2_bond, 
+                bond.r1_bond_name, bond.r_cat_name, bond.r2_bond_name, bond.bond_type,
+                bond.rmsd, bond.r_asa, bond.probability, bond.template
+            ]
+            formatted_row = "\t".join(f"{str(item):<{column_widths[i]}}" for i, item in enumerate(row))
+            print(formatted_row)
 
     def _parse_jess_output(self):
         """
@@ -113,22 +113,27 @@ class Isopeptide:
                 rmsd = float(match[1])
                 template = match[2].split("/")[-1].replace(".pdb", "")
                 residues = []
+                residue_names = []
                 chain = None
                 
             if line.startswith("ATOM"):
                 chain = line[21]
                 resi = int(line[22:26].strip())
-                residues.append(resi)
+                resi_name = line[17:20]
+                if resi not in residues:
+                    residues.append(resi)
+                    residue_names.append(resi_name)
             
             if line.startswith("ENDMDL"):
-                residues = list(set(residues))
                 
                 if len(residues) != 3:
                     raise ValueError(f"Number of residues found different from expected: 3!={len(residues)}")
 
                 self.isopeptide_bonds.append(
                     BondElement(
-                                pdb_file, protein_name, rmsd, template, chain, residues[0], residues[1], residues[2], 
+                                pdb_file, protein_name, rmsd, template, chain, 
+                                residues[0], residues[1], residues[2],
+                                residue_names[0], residue_names[1], residue_names[2]
                     )
                 )
 
@@ -157,10 +162,11 @@ class Isopeptide:
             # Get asa of isopeptide residues
             for bond in [b for b in bonds if b.pdb_file == pdb_file]:
                 isopep_residues = [bond.r1_bond, bond.r_cat, bond.r2_bond]
+                isopep_residue_names = [bond.r1_bond_name, bond.r_cat_name, bond.r2_bond_name]
                 tmp_r_asa = 0
-                for res_id in isopep_residues:
+                for res_id, res_name in zip(isopep_residues, isopep_residue_names):
                     res_indeces = [i for i, atom in enumerate(structure) if atom.res_id == res_id and atom.chain_id == bond.chain]
-                    res_name = structure[res_indeces[0]].res_name
+                    #res_name = structure[res_indeces[0]].res_name
                     if res_name not in MAX_ASA["rost_sander"].keys():
                         raise ValueError(f"{res_name} not in {MAX_ASA['rost_sander'].keys()}")
                     # Normalise ASA by residue surface area
@@ -176,3 +182,12 @@ class Isopeptide:
         """
         for bond in self.isopeptide_bonds:
             bond.probability = _predict(bond.rmsd, bond.r_asa)
+
+    def _infer_type(self):
+        """
+
+            Infer isopeptide bond type (CnaA/B-like)
+
+        """
+        for bond in self.isopeptide_bonds:
+            bond.bond_type = BOND_TYPE.get(bond.template, None)

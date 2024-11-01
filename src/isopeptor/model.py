@@ -11,7 +11,7 @@ warnings.filterwarnings("ignore")
 
 CLF = None
 
-def get_model():
+def _get_model():
     global CLF
     if CLF is None:
         model_path = Path(__file__).parent / "resources" / "model" / "model.pkl"
@@ -30,6 +30,6 @@ def _predict(rmsd:float, r_asa:float)->float:
             r_asa: relative solvent accessible surface
 
     """
-    clf = get_model()
+    clf = _get_model()
     prob_isopep = clf.predict_proba(np.array([[rmsd, r_asa]]))[:,1]
     return round(prob_isopep[0], 3)

@@ -64,7 +64,6 @@ setup(
     # Package dependencies
     install_requires=[
         'numpy',
-        'pandas',
         'biotite',
         'joblib',
         'scikit-learn'
@@ -75,6 +74,12 @@ setup(
         'dev': [
             'pytest',
             'pytest-cov',
+        ],
+    },
+
+    entry_points={
+        'console_scripts': [
+            'isopeptor=isopeptor.cli:main',
         ],
     },
     
