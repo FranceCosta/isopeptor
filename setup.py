@@ -68,14 +68,6 @@ setup(
         'joblib',
         'scikit-learn'
     ],
-    
-    # Development dependencies
-    extras_require={
-        'dev': [
-            'pytest',
-            'pytest-cov',
-        ],
-    },
 
     entry_points={
         'console_scripts': [

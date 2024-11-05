@@ -7,7 +7,9 @@ The method can be accessed via [this google colab]() or installed and run locall
 ## Installation
 
 ```
-pip install isopeptor
+git clone https://github.com/FranceCosta/isopeptor
+cd isopeptor 
+pip install .
 ```
 
 ## Usage
