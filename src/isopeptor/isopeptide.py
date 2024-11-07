@@ -173,7 +173,7 @@ class Isopeptide:
     def _calc_rasa(self):
         """
 
-            Calcolate r_asa for every isopeptide bond in every structure
+            Calculate r_asa for every isopeptide bond in every structure
 
         """
         bonds = self.isopeptide_bonds
