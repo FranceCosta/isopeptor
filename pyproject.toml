@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "isopeptor"
+version = "0.0.1"
+description = "Package for isopeptide bond prediction and analysis based on Jess"
+authors = [{name = "Francesco Costa", email = "fcosta@ebi.ac.uk"}]
+requires-python = ">=3.8"
+license = {text = "MIT License"}
+readme = "README.md"
+
+# Project metadata
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["isopeptide", "prediction", "protein", "bioinformatics"]
+
+# Dependencies
+dependencies = [
+    "numpy",
+    "biotite",
+    "joblib",
+    "scikit-learn",
+    "pyjess",
+]
+
+[project.urls]
+Source = "https://github.com/FranceCosta/isopeptor"
+"Bug Reports" = "https://github.com/FranceCosta/isopeptor/issues"
+
+# Console scripts entry point
+[project.scripts]
+isopeptor = "isopeptor.cli:main"
+
+# Package structure
+[tool.setuptools]
+packages = ["isopeptor"]
+package-dir = {"" = "src"}
+
+[tool.setuptools.package-data]
+"isopeptor" = ["resources/data/template_structures*", "resources/model/model.pkl"]
