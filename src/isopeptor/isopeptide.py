@@ -119,6 +119,9 @@ class Isopeptide:
 
             Load pyjess._jess.Hit as list of bondElement in self.isopeptide_bonds
 
+            Raises:
+            - ValueError if number of residues found is not expected
+
         """
         for hit in self.jess_hits:
             template, rmsd, pdb_file, atoms = hit.template.id, hit.rmsd, hit.molecule.id, hit.atoms()
@@ -130,13 +133,25 @@ class Isopeptide:
                     residue_names.append(atom.residue_name)
             chain = atom.chain_id
 
-            self.isopeptide_bonds.append(
-                BondElement(
-                            pdb_file, protein_name, round(rmsd, 3), template, chain, 
-                            residues[0], residues[1], residues[2],
-                            residue_names[0], residue_names[1], residue_names[2]
+            if len(residues) == 3:
+                self.isopeptide_bonds.append(
+                    BondElement(
+                                pdb_file, protein_name, round(rmsd, 3), template, chain, 
+                                residues[0], residues[1], residues[2],
+                                residue_names[0], residue_names[1], residue_names[2]
+                    )
                 )
-            )
+            # If using templates with only two atoms (usually for bb search)
+            elif len(residues) == 2:
+                self.isopeptide_bonds.append(
+                    BondElement(
+                                pdb_file, protein_name, round(rmsd, 3), template, chain, 
+                                residues[0], -1, residues[1],
+                                residue_names[0], None, residue_names[1]
+                    )
+                )
+            else:
+                raise ValueError(f"Found {len(residues)} residues.")
 
     def _reduce_redundant(self):
         """
@@ -166,6 +181,9 @@ class Isopeptide:
                 isopep_residue_names = [bond.r1_bond_name, bond.r_cat_name, bond.r2_bond_name]
                 tmp_r_asa = 0
                 for res_id, res_name in zip(isopep_residues, isopep_residue_names):
+                    # Handle the case of two res bb
+                    if res_name == None:
+                        continue
                     res_indeces = [i for i, atom in enumerate(structure) if atom.res_id == res_id and atom.chain_id == bond.chain]
                     #res_name = structure[res_indeces[0]].res_name
                     if res_name not in MAX_ASA["rost_sander"].keys():

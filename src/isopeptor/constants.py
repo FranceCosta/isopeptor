@@ -1,7 +1,14 @@
 #! /usr/env/python
 # -*- coding: utf-8 -*-
 
-MAX_ASA = { "rost_sander": { "LYS": 205, "ASP": 163, "GLU": 194, "ASN": 157}}
+MAX_ASA = { "rost_sander": { 
+                            "LYS": 205, "ASP": 163, "GLU": 194, "ASN": 157, "ALA": 106,
+                            "CYS": 135, "PHE": 197, "GLY": 84, "HIS": 184, "ILE": 169,
+                            "LEU": 164, "MET": 188, "PRO": 136, "GLN": 198, "ARG": 248,
+                            "SER": 130, "THR": 142, "VAL": 142, "TRP": 227, "TYR": 222
+                            }
+          }
+
 BOND_TYPE = {
     '1amx_A_176_209_293': 'CnaA-like',
     '2f6a_A_176_209_293': 'CnaA-like',

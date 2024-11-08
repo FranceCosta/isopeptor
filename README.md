@@ -91,3 +91,8 @@ protein_name	probability	chain	r1_bond	r_cat	r2_bond	r1_bond_name	r_cat_name	r2_
 ```
 python -m unittest discover -s tests -p "test_isopeptide.py"
 ```
+
+
+## TODO
+- modify _reduce_redundant() to select unique by protein match and not by protein!
+- get asa by chain
