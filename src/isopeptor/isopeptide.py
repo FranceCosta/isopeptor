@@ -38,12 +38,12 @@ class Isopeptide:
             >>> i.isopeptide_bonds[0]
             BondElement(pdb_file=tests/data/test_structures/8beg.pdb, protein_name=8beg, rmsd=0.0, template=8beg_A_590_636_729, chain=A, r1_bond=590, r_cat=636, r2_bond=729, r1_bond_name=LYS, r_cat_name=ASP, r2_bond_name=ASN, bond_type=CnaA-like, r_asa=0.1, probability=0.984)
             >>> i.print_tabular()
-            protein_name	probability	chain	r1_bond	r_cat	r2_bond	r1_bond_name	r_cat_name	r2_bond_name	bond_type	rmsd	r_asa	template
-            8beg        	0.984      	A    	590    	636  	729    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	8beg_A_590_636_729
-            7woi        	0.984      	A    	57     	158  	195    	LYS         	GLU       	ASN         	CnaB-like	0.001	0.1  	7woi_A_57_158_195 
-            5dz9        	0.984      	A    	556    	606  	703    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	4z1p_A_3_53_150   
-            4z1p        	0.984      	A    	3      	53   	150    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	4z1p_A_3_53_150   
-            6to1_af     	0.795      	A    	13     	334  	420    	LYS         	ASP       	ASN         	CnaA-like	0.346	0.1  	2x9z_A_193_241_318
+                protein_name        probability     chain   r1_bond r_cat   r2_bond r1_bond_name    r_cat_name      r2_bond_name    bond_type       rmsd    r_asa   template
+                8beg                0.984           A       590     636     729     LYS             ASP             ASN             CnaA-like       0.0     0.1     8beg_A_590_636_729
+                7woi                0.984           A       57      158     195     LYS             GLU             ASN             CnaB-like       0.001   0.1     7woi_A_57_158_195 
+                5dz9                0.984           A       556     606     703     LYS             ASP             ASN             CnaA-like       0.0     0.1     4z1p_A_3_53_150   
+                4z1p                0.984           A       3       53      150     LYS             ASP             ASN             CnaA-like       0.0     0.1     4z1p_A_3_53_150   
+                6to1_af             0.438           A       13      334     420     LYS             ASP             ASN             CnaA-like       0.548   0.1     4uzg_A_187_225_330
                     
             Calculate solvent accessible area for a more accurate (and slow) prediction
             >>> i = Isopeptide("tests/data/test_structures", distance=1.5)
