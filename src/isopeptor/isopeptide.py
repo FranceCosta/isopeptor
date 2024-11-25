@@ -19,6 +19,7 @@ class Isopeptide:
         Handles isopeptide bond prediction running jess via the jess_wrapper module
         and solvent accessible area via the asa module. Stores isopeptide bond predictions
         as a list of BondElement. Prediction is run for all structures from pdb_dir. 
+        Structures in .pdb format are directly analysed. If structures are in .cif format, they are first converted into .pdb.
         If multiple matches with an isopeptide bond signature are detected, only the one
         with the lowest RMSD is retained.
 
@@ -35,6 +36,7 @@ class Isopeptide:
             >>> from isopeptor.isopeptide import Isopeptide
             >>> i = Isopeptide("tests/data/test_structures", distance=1.5, fixed_r_asa=0.1)
             >>> i.predict()
+            CIF files detected. Converting them into PDB format.
             >>> i.isopeptide_bonds[0]
             BondElement(pdb_file=tests/data/test_structures/8beg.pdb, protein_name=8beg, rmsd=0.0, template=8beg_A_590_636_729, chain=A, r1_bond=590, r_cat=636, r2_bond=729, r1_bond_name=LYS, r_cat_name=ASP, r2_bond_name=ASN, bond_type=CnaA-like, r_asa=0.1, probability=0.984)
             >>> i.print_tabular()
@@ -48,6 +50,7 @@ class Isopeptide:
             Calculate solvent accessible area for a more accurate (and slow) prediction
             >>> i = Isopeptide("tests/data/test_structures", distance=1.5)
             >>> i.predict()
+            CIF files detected. Converting them into PDB format.
     """
     def __init__(self, pdb_dir: str, distance: float = 1.5, fixed_r_asa: float | None = None):
         """
@@ -103,16 +106,17 @@ class Isopeptide:
         "r1_bond_name", "r_cat_name", "r2_bond_name", "bond_type",
         "rmsd", "r_asa", "template"
         ]
-        column_widths = [max(len(header), max(len(str(getattr(bond, header))) for bond in self.isopeptide_bonds)) for header in headers]
         print("\t".join(headers))
-        for bond in self.isopeptide_bonds:
-            row = [
-                bond.protein_name, bond.probability, bond.chain, bond.r1_bond, bond.r_cat, bond.r2_bond, 
-                bond.r1_bond_name, bond.r_cat_name, bond.r2_bond_name, bond.bond_type,
-                bond.rmsd, bond.r_asa, bond.template
-            ]
-            formatted_row = "\t".join(f"{str(item):<{column_widths[i]}}" for i, item in enumerate(row))
-            print(formatted_row)
+        if len(self.isopeptide_bonds) > 0:
+            column_widths = [max(len(header), max(len(str(getattr(bond, header))) for bond in self.isopeptide_bonds)) for header in headers]
+            for bond in self.isopeptide_bonds:
+                row = [
+                    bond.protein_name, bond.probability, bond.chain, bond.r1_bond, bond.r_cat, bond.r2_bond, 
+                    bond.r1_bond_name, bond.r_cat_name, bond.r2_bond_name, bond.bond_type,
+                    bond.rmsd, bond.r_asa, bond.template
+                ]
+                formatted_row = "\t".join(f"{str(item):<{column_widths[i]}}" for i, item in enumerate(row))
+                print(formatted_row)
 
     def _load_hits(self):
         """

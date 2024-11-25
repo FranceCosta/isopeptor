@@ -7,3 +7,4 @@ build/
 tests.ipynb
 data/resources/structures
 tmp
+converted_models

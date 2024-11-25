@@ -6,6 +6,8 @@ from pyjess import Jess
 from pyjess import Molecule
 from pathlib import Path
 import os
+import biotite.structure.io.pdbx as pdbx
+import biotite.structure.io.pdb as pdb
 
 def _run_jess(pdb_dir: str, distance: float, templates = Path(__file__).parent / "resources" / "data" / "template_structures") -> list:
     """
@@ -13,6 +15,7 @@ def _run_jess(pdb_dir: str, distance: float, templates = Path(__file__).parent /
         Runs Jess using stored isopeptide bond templates (default templates). 
         Only intrachain matches are considered. In case of multiple models 
         (delimited by ENDMDL) only the first is considered.
+        If .cif files are found they are converted into .pdb models (and stored in "./converted_models/").
 
         Args:
         - pdb_dir: directory containing .pdb files
@@ -25,7 +28,7 @@ def _run_jess(pdb_dir: str, distance: float, templates = Path(__file__).parent /
         - list of pyjess._jess.Hit 
 
         Rises:
-        - FileNotFoundError if template or pdb files are not found
+        - FileNotFoundError if template or pdb/cif files are not found
 
     """
     template_files = [str(p.resolve()) for p in Path(templates).glob("*.pdb")]
@@ -33,8 +36,24 @@ def _run_jess(pdb_dir: str, distance: float, templates = Path(__file__).parent /
         raise FileNotFoundError("Jess templates not found.")
 
     pdb_files = [str(p) for p in Path(pdb_dir).glob("*.pdb")]
-    if not pdb_files:
-        raise FileNotFoundError("No PDB files found in the specified directory.")
+    cif_files = [str(p) for p in Path(pdb_dir).glob("*.cif")]
+
+    if not pdb_files+cif_files:
+        raise FileNotFoundError("No PDB/CIF files found in the specified directory.")
+    
+    # Convert
+    if cif_files:
+        print("CIF files detected. Converting them into PDB format.")
+        converted_models_dir = os.path.join(os.getcwd(), "converted_models")
+        os.makedirs(converted_models_dir, exist_ok=True)
+        for cif_file_path in cif_files:
+            cif_file = pdbx.CIFFile.read(cif_file_path)
+            arr = pdbx.get_structure(cif_file)
+            pdb_file = pdb.PDBFile()
+            pdb_file.set_structure(arr)
+            pdb_file_path = os.path.join(converted_models_dir, os.path.basename(cif_file_path).replace(".cif", ".pdb"))
+            pdb_file.write(pdb_file_path)
+            pdb_files.append(pdb_file_path)
 
     rmsd_threshold, distance_cutoff, max_dynamic_distance = [distance]*3
     

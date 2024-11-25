@@ -96,3 +96,4 @@ python -m unittest discover -s tests -p "test_isopeptide.py"
 ## TODO
 - modify _reduce_redundant() to select unique by protein match and not by protein!
 - get asa by chain
+- implement authomatic mmCif conversion (check how it handles very large files)
