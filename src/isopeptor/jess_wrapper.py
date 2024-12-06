@@ -8,6 +8,7 @@ from pathlib import Path
 import os
 import biotite.structure.io.pdbx as pdbx
 import biotite.structure.io.pdb as pdb
+import warnings
 
 def _run_jess(pdb_dir: str, distance: float, templates = Path(__file__).parent / "resources" / "data" / "template_structures") -> list:
     """
@@ -43,7 +44,7 @@ def _run_jess(pdb_dir: str, distance: float, templates = Path(__file__).parent /
     
     # Convert
     if cif_files:
-        print("CIF files detected. Converting them into PDB format.")
+        warnings.warn("CIF files detected. Converting them into PDB format.", UserWarning)
         converted_models_dir = os.path.join(os.getcwd(), "converted_models")
         os.makedirs(converted_models_dir, exist_ok=True)
         for cif_file_path in cif_files:

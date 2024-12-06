@@ -72,36 +72,42 @@ BondElement(pdb_file=/nfs/research/agb/research/francesco/projects/20241024_isop
 ```
 ```
 >>> i.print_tabular()
-protein_name	probability	chain	r1_bond	r_cat	r2_bond	r1_bond_name	r_cat_name	r2_bond_name	bond_type	rmsd	r_asa	template
-8beg        	0.984      	A    	590    	636  	729    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	8beg_A_590_636_729   
-8beg        	0.984      	A    	756    	806  	894    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	8beg_A_756_806_894   
-8beg        	0.984      	A    	922    	973  	1049   	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	8beg_A_922_973_1049  
-8beg        	0.984      	A    	1076   	1123 	1211   	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	8beg_A_1076_1123_1211
-7woi        	0.984      	A    	57     	158  	195    	LYS         	GLU       	ASN         	CnaB-like	0.001	0.1  	7woi_A_57_158_195    
-7woi        	0.984      	A    	203    	246  	318    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	7woi_A_203_246_318   
-5dz9        	0.984      	A    	556    	606  	703    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	4z1p_A_3_53_150      
-5dz9        	0.984      	A    	730    	776  	861    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	4z1p_A_177_223_308   
-4z1p        	0.984      	A    	3      	53   	150    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	4z1p_A_3_53_150      
-4z1p        	0.984      	A    	177    	223  	308    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	4z1p_A_177_223_308   
-6to1_af     	0.438      	A    	13     	334  	420    	LYS         	ASP       	ASN         	CnaA-like	0.548	0.1  	4uzg_A_187_225_330
+protein_name        probability     chain   r1_bond r_cat   r2_bond r1_bond_name    r_cat_name      r2_bond_name    bond_type       rmsd    r_asa   template
+8beg                0.99            A       590     636     729     LYS             ASP             ASN             CnaA-like       0.0     0.1     8beg_A_590_636_729   
+8beg                0.99            A       756     806     894     LYS             ASP             ASN             CnaA-like       0.0     0.1     8beg_A_756_806_894   
+8beg                0.99            A       922     973     1049    LYS             ASP             ASN             CnaA-like       0.0     0.1     8beg_A_922_973_1049  
+8beg                0.99            A       1076    1123    1211    LYS             ASP             ASN             CnaA-like       0.0     0.1     8beg_A_1076_1123_1211
+5dz9                0.99            A       556     606     703     LYS             ASP             ASN             CnaA-like       0.0     0.1     4z1p_A_3_53_150      
+5dz9                0.99            A       730     776     861     LYS             ASP             ASN             CnaA-like       0.0     0.1     4z1p_A_177_223_308   
+4z1p                0.99            A       3       53      150     LYS             ASP             ASN             CnaA-like       0.0     0.1     4z1p_A_3_53_150      
+4z1p                0.99            A       177     223     308     LYS             ASP             ASN             CnaA-like       0.0     0.1     4z1p_A_177_223_308   
+7woi                0.907           B       57      158     195     LYS             GLU             ASN             CnaB-like       0.314   0.1     5j4m_A_47_139_172    
+1amx                0.879           A       176     209     293     LYS             ASP             ASN             CnaA-like       0.353   0.1     2f68_X_176_209_293   
+7woi                0.871           A       203     246     318     LYS             ASP             ASN             CnaA-like       0.363   0.1     4hss_A_187_224_299   
+7woi                0.834           B       355     435     466     LYS             GLU             ASN             CnaB-like       0.403   0.1     8f70_A_299_386_437   
+6to1_af             0.602           A       13      334     420     LYS             ASP             ASN             CnaA-like       0.565   0.1     5mkc_A_191_600_695                    
+
 ```
 
 Calculate solvent accessible area for a more accurate (and slow) prediction:
 ```
 >>> i = Isopeptide("tests/data/test_structures", distance=1.5)
 >>> i.predict()
+>>> i.print_tabular()
 protein_name	probability	chain	r1_bond	r_cat	r2_bond	r1_bond_name	r_cat_name	r2_bond_name	bond_type	rmsd	r_asa	template
-8beg        	0.987      	A    	590    	636  	729    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.004	8beg_A_590_636_729   
-8beg        	0.987      	A    	756    	806  	894    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.028	8beg_A_756_806_894   
-8beg        	0.987      	A    	922    	973  	1049   	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.015	8beg_A_922_973_1049  
-8beg        	0.987      	A    	1076   	1123 	1211   	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.015	8beg_A_1076_1123_1211
-7woi        	0.987      	A    	57     	158  	195    	LYS         	GLU       	ASN         	CnaB-like	0.001	0.019	7woi_A_57_158_195    
-7woi        	0.987      	A    	203    	246  	318    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.012	7woi_A_203_246_318   
-5dz9        	0.987      	A    	556    	606  	703    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.009	4z1p_A_3_53_150      
-5dz9        	0.987      	A    	730    	776  	861    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.019	4z1p_A_177_223_308   
-4z1p        	0.987      	A    	3      	53   	150    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.009	4z1p_A_3_53_150      
-4z1p        	0.987      	A    	177    	223  	308    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.019	4z1p_A_177_223_308   
-6to1_af     	0.505      	A    	13     	334  	420    	LYS         	ASP       	ASN         	CnaA-like	0.548	0.002	4uzg_A_187_225_330   
+8beg        	0.992      	A    	590    	636  	729    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.004	8beg_A_590_636_729   
+8beg        	0.991      	A    	756    	806  	894    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.028	8beg_A_756_806_894   
+8beg        	0.991      	A    	922    	973  	1049   	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.015	8beg_A_922_973_1049  
+8beg        	0.991      	A    	1076   	1123 	1211   	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.015	8beg_A_1076_1123_1211
+5dz9        	0.991      	A    	556    	606  	703    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.009	4z1p_A_3_53_150      
+5dz9        	0.991      	A    	730    	776  	861    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.019	4z1p_A_177_223_308   
+4z1p        	0.991      	A    	3      	53   	150    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.009	4z1p_A_3_53_150      
+4z1p        	0.991      	A    	177    	223  	308    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.019	4z1p_A_177_223_308   
+7woi        	0.917      	B    	57     	158  	195    	LYS         	GLU       	ASN         	CnaB-like	0.314	0.027	5j4m_A_47_139_172    
+1amx        	0.894      	A    	176    	209  	293    	LYS         	ASP       	ASN         	CnaA-like	0.353	0.016	2f68_X_176_209_293   
+7woi        	0.887      	A    	203    	246  	318    	LYS         	ASP       	ASN         	CnaA-like	0.363	0.012	4hss_A_187_224_299   
+7woi        	0.855      	B    	355    	435  	466    	LYS         	GLU       	ASN         	CnaB-like	0.403	0.009	8f70_A_299_386_437   
+6to1_af     	0.642      	A    	13     	334  	420    	LYS         	ASP       	ASN         	CnaA-like	0.565	0.002	5mkc_A_191_600_695   
 ```
 
 ## Test
@@ -111,5 +117,3 @@ python -m unittest discover -s tests -p "test_isopeptide.py"
 ```
 
 ## TODO
-- handle case of asn NZ assignment with a complementary set of templates where the Nz is assigned to the asn
-- print .cif file detection as a warning
