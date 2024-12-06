@@ -6,6 +6,7 @@ from typing import List
 import warnings
 import numpy as np
 import os
+from pathlib import Path
 from isopeptor.jess_wrapper import _run_jess
 from isopeptor.asa import _get_structure_asa
 from isopeptor.bond import BondElement 
@@ -18,13 +19,13 @@ class Isopeptide:
     
         Handles isopeptide bond prediction running jess via the jess_wrapper module
         and solvent accessible area via the asa module. Stores isopeptide bond predictions
-        as a list of BondElement. Prediction is run for all structures from pdb_dir. 
+        as a list of BondElement. Prediction is run for all structures from struct_dir. 
         Structures in .pdb format are directly analysed. If structures are in .cif format, they are first converted into .pdb.
         If multiple matches with an isopeptide bond signature are detected, only the one
         with the lowest RMSD is retained.
 
         Attributes:
-            pdb_dir: str where pdb files are located
+            struct_dir: str where pdb/cif files are located
             distance: float that specifies permissivity of jess search
             jess_output: None | str that stores jess raw output for debug purposes
             isopeptide_bonds: list that stores isopeptide bonds as BondElement elements
@@ -37,7 +38,7 @@ class Isopeptide:
             >>> i = Isopeptide("tests/data/test_structures", distance=1.5, fixed_r_asa=0.1)
             >>> i.predict()
             >>> i.isopeptide_bonds[0]
-            BondElement(pdb_file=tests/data/test_structures/8beg.pdb, protein_name=8beg, rmsd=0.0, template=8beg_A_590_636_729, chain=A, r1_bond=590, r_cat=636, r2_bond=729, r1_bond_name=LYS, r_cat_name=ASP, r2_bond_name=ASN, bond_type=CnaA-like, r_asa=0.1, probability=0.99)
+            BondElement(struct_file=tests/data/test_structures/8beg.pdb, protein_name=8beg, rmsd=0.0, template=8beg_A_590_636_729, chain=A, r1_bond=590, r_cat=636, r2_bond=729, r1_bond_name=LYS, r_cat_name=ASP, r2_bond_name=ASN, bond_type=CnaA-like, r_asa=0.1, probability=0.99)
             >>> i.print_tabular()
                 protein_name        probability     chain   r1_bond r_cat   r2_bond r1_bond_name    r_cat_name      r2_bond_name    bond_type       rmsd    r_asa   template
                 8beg                0.99            A       590     636     729     LYS             ASP             ASN             CnaA-like       0.0     0.1     8beg_A_590_636_729   
@@ -58,14 +59,14 @@ class Isopeptide:
             >>> i = Isopeptide("tests/data/test_structures", distance=1.5)
             >>> i.predict()
     """
-    def __init__(self, pdb_dir: str, distance: float = 1.5, fixed_r_asa: float | None = None):
+    def __init__(self, struct_dir: str, distance: float = 1.5, fixed_r_asa: float | None = None):
         """
         
             Raises
                ValueError if fixed_r_asa not between 0 and 1
         
         """
-        self.pdb_dir: str = pdb_dir
+        self.struct_dir: str = struct_dir
         self.distance: float = distance
         self.jess_hits: list | None = None
         self.isopeptide_bonds: List[BondElement] = []
@@ -73,6 +74,9 @@ class Isopeptide:
         if self.fixed_r_asa != None:
             if self.fixed_r_asa < 0 or self.fixed_r_asa > 1:
                 raise ValueError(f"fixed_r_asa is not in 0-1 range. Found: {self.fixed_r_asa}")
+        pdb_files = [str(p) for p in Path(self.struct_dir).glob("*.pdb")]
+        cif_files = [str(p) for p in Path(self.struct_dir).glob("*.cif")]
+        self.structure_files = pdb_files + cif_files
 
     def predict(self):
         """
@@ -83,7 +87,7 @@ class Isopeptide:
 
         """
 
-        self.jess_hits = _run_jess(self.pdb_dir, self.distance)
+        self.jess_hits = _run_jess(self.structure_files, self.distance)
         if len(self.jess_hits) == 0:
             warnings.warn("No isopeptide bond predictions detected. Try increasing the distance parameter.", UserWarning)
             return
@@ -134,8 +138,8 @@ class Isopeptide:
 
         """
         for hit in self.jess_hits:
-            template, rmsd, pdb_file, atoms = hit.template.id, hit.rmsd, hit.molecule.id, hit.atoms()
-            protein_name = os.path.basename(pdb_file).replace(".pdb", "")
+            template, rmsd, struct_file, atoms = hit.template.id, hit.rmsd, hit.molecule.id, hit.atoms()
+            protein_name = os.path.basename(struct_file).replace(".pdb", "").replace(".cif", "")
             residues, residue_names = [], []
             for atom in atoms:
                 if atom.residue_number not in residues:
@@ -146,7 +150,7 @@ class Isopeptide:
             if len(residues) == 3:
                 self.isopeptide_bonds.append(
                     BondElement(
-                                pdb_file, protein_name, round(rmsd, 3), template, chain, 
+                                struct_file, protein_name, round(rmsd, 3), template, chain, 
                                 residues[0], residues[1], residues[2],
                                 residue_names[0], residue_names[1], residue_names[2]
                     )
@@ -155,7 +159,7 @@ class Isopeptide:
             elif len(residues) == 2:
                 self.isopeptide_bonds.append(
                     BondElement(
-                                pdb_file, protein_name, round(rmsd, 3), template, chain, 
+                                struct_file, protein_name, round(rmsd, 3), template, chain, 
                                 residues[0], -1, residues[1],
                                 residue_names[0], None, residue_names[1]
                     )
@@ -187,11 +191,11 @@ class Isopeptide:
 
         """
         bonds = self.isopeptide_bonds
-        for pdb_file in set([b.pdb_file for b in bonds]):
+        for struct_file in set([b.struct_file for b in bonds]):
             # Get asa and structure atom array pdb file
-            structure_sasa, structure = _get_structure_asa(pdb_file)
+            structure_sasa, structure = _get_structure_asa(struct_file)
             # Get asa of isopeptide residues
-            for bond in [b for b in bonds if b.pdb_file == pdb_file]:
+            for bond in [b for b in bonds if b.struct_file == struct_file]:
                 isopep_residues = [bond.r1_bond, bond.r_cat, bond.r2_bond]
                 isopep_residue_names = [bond.r1_bond_name, bond.r_cat_name, bond.r2_bond_name]
                 tmp_r_asa = 0

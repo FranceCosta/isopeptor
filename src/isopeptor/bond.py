@@ -7,7 +7,7 @@ class BondElement:
         Stores isopeptide bond predictions
 
         Attributes:
-            pdb_file: path to pdb file
+            struct_file: path to structure file
             protein_name: protein name from file name
             rmsd: rmsd with template (in A)
             template: template name
@@ -18,11 +18,11 @@ class BondElement:
 
     """
     def __init__(
-        self, pdb_file: str, protein_name: str, rmsd: float, template: str,
+        self, struct_file: str, protein_name: str, rmsd: float, template: str,
         chain: str, r1_bond: int, r_cat: int, r2_bond: int,
         r1_bond_name: str, r_cat_name: str, r2_bond_name: str
         ):
-        self.pdb_file = pdb_file
+        self.struct_file = struct_file
         self.protein_name = protein_name
         self.rmsd = rmsd
         self.template = template
@@ -37,7 +37,7 @@ class BondElement:
         self.probability: float | None = None
 
     def __repr__(self):
-        s = f"BondElement(pdb_file={self.pdb_file}, protein_name={self.protein_name}, rmsd={self.rmsd}, template={self.template}, "+\
+        s = f"BondElement(struct_file={self.struct_file}, protein_name={self.protein_name}, rmsd={self.rmsd}, template={self.template}, "+\
             f"chain={self.chain}, r1_bond={self.r1_bond}, r_cat={self.r_cat}, r2_bond={self.r2_bond}, "+\
             f"r1_bond_name={self.r1_bond_name}, r_cat_name={self.r_cat_name}, r2_bond_name={self.r2_bond_name}, "+\
             f"bond_type={self.bond_type}, r_asa={self.r_asa}, probability={self.probability})"

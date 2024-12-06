@@ -52,6 +52,7 @@ positional arguments:
   path_to_pdb_files     Path to directory containing .pdb files.
 
 options:
+
   -h, --help            show this help message and exit
   --distance DISTANCE   Specifies permissivity of jess search. The higher, the more permissive.
   --fixed_r_asa FIXED_R_ASA
@@ -68,7 +69,7 @@ Quick prediction:
 >>> i = Isopeptide("tests/data/test_structures", distance=1.5, fixed_r_asa=0.1)
 >>> i.predict()
 >>> i.isopeptide_bonds[0]
-BondElement(pdb_file=/nfs/research/agb/research/francesco/projects/20241024_isopeptor_v1/tests/data/test_structures/8beg.pdb, protein_name=8beg, rmsd=0.0, template=8beg_A_590_636_729, chain=A, r1_bond=590, r_cat=636, r2_bond=729, r1_bond_name=LYS, r_cat_name=ASP, r2_bond_name=ASN, bond_type=CnaA-like, r_asa=0.1, probability=0.984)
+BondElement(struct_file=/nfs/research/agb/research/francesco/projects/20241024_isopeptor_v1/tests/data/test_structures/8beg.pdb, protein_name=8beg, rmsd=0.0, template=8beg_A_590_636_729, chain=A, r1_bond=590, r_cat=636, r2_bond=729, r1_bond_name=LYS, r_cat_name=ASP, r2_bond_name=ASN, bond_type=CnaA-like, r_asa=0.1, probability=0.984)
 ```
 ```
 >>> i.print_tabular()

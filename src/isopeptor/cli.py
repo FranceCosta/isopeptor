@@ -16,8 +16,8 @@ parser = argparse.ArgumentParser(
 )
 
 parser.add_argument(
-    "path_to_pdb_files", 
-    help="Path to directory containing .pdb files.", 
+    "path_to_structure_files", 
+    help="Path to directory containing .pdb/.cif files.", 
     type=str
 )
 
@@ -39,7 +39,7 @@ parser.add_argument(
 
 def main():
     args = parser.parse_args()
-    i = Isopeptide(args.path_to_pdb_files, args.distance, args.fixed_r_asa)
+    i = Isopeptide(args.path_to_structure_files, args.distance, args.fixed_r_asa)
     i.predict()
     i.print_tabular()
 
