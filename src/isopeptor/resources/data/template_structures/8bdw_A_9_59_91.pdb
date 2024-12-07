@@ -1,9 +1,6 @@
 ATOM     -1  CG  LYS A   9      68.835  23.871  12.735
-ATOM     -1  CD  LYS A   9      68.434  24.586  11.389
 ATOM     -1  CE  LYS A   9      69.365  25.729  11.114
 ATOM     -1  CB  GLU A  59      67.365  31.333  10.655
-ATOM     -1  CG  GLU A  59      68.469  30.867  11.674
 ATOM     -1  CD  GLU A  59      69.489  29.937  11.034
 ATOM     -1  CA  ASP A  91      72.597  25.246   8.051
-ATOM     -1  CB  ASP A  91      72.823  25.488   9.555
 ATOM     -1  CG  ASP A  91      71.616  26.080  10.251
