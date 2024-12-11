@@ -1,12 +1,27 @@
 #! /usr/env/python
 # -*- coding: utf-8 -*-
 
+MEAN_BOND_LENGTH = 1.328
+STD_DEV_BOND_LENGTH = 0.082
+
+# Thresholds of likelihood above which the 95th 
+# percentile of the distribution lays
+DIHEDRAL_ANGLES_TRHESHOLDS = {
+  "CnaA-like": {
+    "phi_psi": -10.503,
+    "omega_psi": -10.498,
+    "omega_phi": -10.503
+  },
+  "CnaB-like": {
+    "phi_psi": -10.663,
+    "omega_psi": -10.757,
+    "omega_phi": -10.849
+  }
+}
+
 MAX_ASA = { "rost_sander": { 
-                            "LYS": 205, "ASP": 163, "GLU": 194, "ASN": 157, "ALA": 106,
-                            "CYS": 135, "PHE": 197, "GLY": 84, "HIS": 184, "ILE": 169,
-                            "LEU": 164, "MET": 188, "PRO": 136, "GLN": 198, "ARG": 248,
-                            "SER": 130, "THR": 142, "VAL": 142, "TRP": 227, "TYR": 222
-                            }
+                            "LYS": 205, "ASP": 163, "GLU": 194, "ASN": 157
+                          }
           }
 
 BOND_TYPE = {'2x5p_A_31_77_117': 'CnaB-like',
@@ -17,7 +32,7 @@ BOND_TYPE = {'2x5p_A_31_77_117': 'CnaB-like',
   '3b2m_A_179_258_303': 'CnaB-like',
   '3b2m_A_36_117_168': 'CnaB-like',
   '3gle_A_179_258_303': 'CnaB-like',
-  '3gld_A_179_258_303': 'Mutant',
+  '3gld_A_179_258_303': 'CnaB-like',
   '3hr6_A_363_446_482': 'CnaB-like',
   '3hr6_A_199_241_321': 'CnaA-like',
   '3htl_X_363_446_482': 'CnaB-like',
@@ -95,7 +110,7 @@ BOND_TYPE = {'2x5p_A_31_77_117': 'CnaB-like',
   '5hbb_A_184_269_295': 'CnaB-like',
   '5hdl_A_47_139_172': 'CnaB-like',
   '5j4m_A_47_139_172': 'CnaB-like',
-  '5ttd_A_390_444_494': 'Mutant',
+  '5ttd_A_390_444_494': 'CnaB-like',
   '5mkc_A_191_600_695': 'CnaA-like',
   '5u6f_A_175_232_288': 'CnaB-like',
   '5xcc_A_182_226_310': 'CnaA-like',

@@ -7,12 +7,12 @@ import warnings
 import numpy as np
 import os
 from pathlib import Path
-from isopeptor.jess_wrapper import _run_jess
-from isopeptor.asa import _get_structure_asa
+from isopeptor.jess_wrapper import run_jess
+from isopeptor.asa import get_structure_asa
 from isopeptor.bond import BondElement 
 from isopeptor.constants import MAX_ASA
 from isopeptor.constants import BOND_TYPE
-from isopeptor.model import _predict
+from isopeptor.logistic_regression import predict
 
 class Isopeptide:
     """
@@ -88,7 +88,7 @@ class Isopeptide:
 
         """
 
-        self.jess_hits = _run_jess(self.structure_files, self.distance)
+        self.jess_hits = run_jess(self.structure_files, self.distance)
         if len(self.jess_hits) == 0:
             warnings.warn("No isopeptide bond predictions detected. Try increasing the distance parameter.", UserWarning)
             return
@@ -156,15 +156,6 @@ class Isopeptide:
                                 residue_names[0], residue_names[1], residue_names[2]
                     )
                 )
-            # If using templates with only two atoms (usually for bb search)
-            elif len(residues) == 2:
-                self.isopeptide_bonds.append(
-                    BondElement(
-                                struct_file, protein_name, round(rmsd, 3), template, chain, 
-                                residues[0], -1, residues[1],
-                                residue_names[0], None, residue_names[1]
-                    )
-                )
             else:
                 raise ValueError(f"Found {len(residues)} residues.")
 
@@ -188,13 +179,13 @@ class Isopeptide:
     def _calc_rasa(self):
         """
 
-            Calcolate r_asa for every isopeptide bond in every structure
+            Calculate r_asa for every isopeptide bond in every structure
 
         """
         bonds = self.isopeptide_bonds
         for struct_file in set([b.struct_file for b in bonds]):
             # Get asa and structure atom array pdb file
-            structure_sasa, structure = _get_structure_asa(struct_file)
+            structure_sasa, structure = get_structure_asa(struct_file)
             # Get asa of isopeptide residues
             for bond in [b for b in bonds if b.struct_file == struct_file]:
                 isopep_residues = [bond.r1_bond, bond.r_cat, bond.r2_bond]
@@ -212,6 +203,17 @@ class Isopeptide:
                     r_asa = sum([structure_sasa[i] for i in res_indeces]) / MAX_ASA["rost_sander"][res_name]
                     tmp_r_asa += r_asa
                 bond.r_asa = round(tmp_r_asa / 3, 3)
+
+    def get_geometry(self):
+        """
+        
+            Get geometry measures (bond length and dihedral angles and map to existing distribution of measures from 
+            the database of PDB derived structures)
+        
+        """
+        bonds = self.isopeptide_bonds
+        for struct_file in set([b.struct_file for b in bonds]):
+            ...
     
     def _infer(self):
         """
@@ -220,7 +222,7 @@ class Isopeptide:
 
         """
         for bond in self.isopeptide_bonds:
-            bond.probability = _predict(bond.rmsd, bond.r_asa)
+            bond.probability = predict(bond.rmsd, bond.r_asa)
 
     def _infer_type(self):
         """

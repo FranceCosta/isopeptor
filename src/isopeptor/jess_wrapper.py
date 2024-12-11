@@ -10,7 +10,7 @@ import biotite.structure.io.pdbx as pdbx
 import biotite.structure.io.pdb as pdb
 import warnings
 
-def _run_jess(structure_files: str, distance: float, templates = Path(__file__).parent / "resources" / "data" / "template_structures") -> list:
+def run_jess(structure_files: str, distance: float, templates = Path(__file__).parent / "resources" / "data" / "template_structures") -> list:
     """
     
         Runs Jess using stored isopeptide bond templates (default templates). 

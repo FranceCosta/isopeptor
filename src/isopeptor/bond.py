@@ -35,6 +35,15 @@ class BondElement:
         self.r2_bond_name = r2_bond_name
         self.r_asa: float | None = None
         self.probability: float | None = None
+        self.bond_length: float | None = None
+        self.bond_length_zscore: float | None = None
+        self.bond_length_allowed: bool | None = None
+        self.phi_psi_likelihood: float | None = None
+        self.phi_psi_allowed: bool | None = None
+        self.omega_psi_likelihood: float | None = None
+        self.omega_psi_allowed: bool | None = None
+        self.omega_phi_likelihood: float | None = None
+        self.omega_phi_allowed: bool | None = None
 
     def __repr__(self):
         s = f"BondElement(struct_file={self.struct_file}, protein_name={self.protein_name}, rmsd={self.rmsd}, template={self.template}, "+\
