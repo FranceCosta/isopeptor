@@ -37,10 +37,19 @@ parser.add_argument(
     default=None
 )
 
+parser.add_argument(
+    "--eval_geometry", 
+    required=False, 
+    help="Run geometric evaluation of isopeptide bonds.", 
+    action='store_true'
+)
+
 def main():
     args = parser.parse_args()
     i = Isopeptide(args.path_to_structure_files, args.distance, args.fixed_r_asa)
     i.predict()
+    if args.eval_geometry:
+        i.get_geometry()
     i.print_tabular()
 
 if __name__ == "__main__":

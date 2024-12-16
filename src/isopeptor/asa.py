@@ -4,7 +4,7 @@
 import biotite.structure.io.pdb as pdb
 import biotite.structure as struc
 import os
-from structure import get_structure
+from isopeptor.structure import get_structure
 
 def get_structure_asa(pdb_file_path: str) -> tuple:
     """
