@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "isopeptor"
-version = "0.0.5"
-description = "Package for isopeptide bond prediction and analysis based on Jess"
+version = "0.0.6"
+description = "Package for isopeptide bond prediction and analysis based on pyjess"
 authors = [{name = "Francesco Costa", email = "fcosta@ebi.ac.uk"}]
 requires-python = ">=3.8"
 license = {text = "MIT License"}

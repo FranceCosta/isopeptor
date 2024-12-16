@@ -1,6 +1,6 @@
 # ISOPEPtide bond detecTOR
 
-![Workflow](./workflow.png)
+![workflow](https://github.com/user-attachments/assets/0778c7d3-23e0-4936-ad49-1342f89c98a9)
 
 Isopeptide bond prediction from .pdb/.cif structure. Method described in "Isopeptor: a tool for detecting intramolecular isopeptide bonds in protein structures".
 
