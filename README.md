@@ -63,6 +63,8 @@ options:
 ```
 
 Specifying --fixed_r_asa with a relative solvent accessibile area between 0 and 1 allows skipping its time-consuming calculation. The downside is that the prediction is less reliable. It is useful for very high throughput screenings where high precision is not required.
+
+
 To run a geometric evaluation use the `--eval_geometry` flag. This will report bond length, dihedral angles (pseudo-psi,phi and psi) and statistical measures. Two metrics are used to compare the parameters with the dataset of high quality structures: bond length Z-score and Kernel Density Estimate likelihood of dihedral angles. Bond length outliers are considered for values exceeding 4 standard deviations from the mean while angle outliers are calculated for each pair of dihedral angles for values of KDE likelihood exceeding the 95th percentile of the high wuality dataset distributions. Outlier parameters are marked under \<PARAMETER\>_allowed column.
 
 ### Python API
