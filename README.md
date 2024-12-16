@@ -2,7 +2,7 @@
 
 ![Workflow](./workflow.png)
 
-Isopeptide bond prediction from .pdb structure. Method described in "A global survey of intramolecular isopeptide bonds".
+Isopeptide bond prediction from .pdb/.cif structure. Method described in "Isopeptor: a tool for detecting intramolecular isopeptide bonds in protein structures".
 
 The method can be accessed via [this google colab]() or installed and run locally.
 
@@ -146,3 +146,7 @@ protein_name	probability	chain	r1_bond	r_cat	r2_bond	r1_bond_name	r_cat_name	r2_
 ```
 python -m unittest discover -s tests -p "test_isopeptide.py"
 ```
+
+## Notes
+
+- .CIF file parsing is handled via .CIF to .PDB conversion at the moment at may not be suitable for very large protein structures.
