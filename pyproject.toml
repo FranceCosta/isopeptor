@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
+requires = ["setuptools>=42", "wheel", "numpy>=2.1.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -22,11 +22,10 @@ keywords = ["isopeptide", "prediction", "protein", "bioinformatics"]
 
 # Dependencies
 dependencies = [
-    "numpy",
-    "biotite",
+    "biotite>=1.0.1",
     "joblib",
-    "scikit-learn",
-    "pyjess",
+    "scikit-learn>=1.5.2",
+    "pyjess>=0.3.3",
 ]
 
 [project.urls]
