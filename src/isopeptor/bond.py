@@ -7,14 +7,14 @@ class BondElement:
         Stores isopeptide bond predictions
 
         Attributes:
-            struct_file: path to structure file
-            protein_name: protein name from file name
-            rmsd: rmsd with template (in A)
-            template: template name
-            chain: protein chain
-            r1_bond: residue number of residue 1 involved in bond
-            r_cat: residue number of catalytic residue
-            r2_bond: residue number of residue 2 involved in bond
+            struct_file (str): path to structure file
+            protein_name (str): protein name from file name
+            rmsd (float): rmsd with template (in A)
+            template (str): template name
+            chain (str): protein chain
+            r1_bond (int): residue number of residue 1 involved in bond
+            r_cat (int): residue number of catalytic residue
+            r2_bond (int): residue number of residue 2 involved in bond
 
     """
     def __init__(

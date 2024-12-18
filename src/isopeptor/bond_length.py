@@ -14,11 +14,11 @@ def get_bond_length(structure:struc.AtomArray, chain:str, r1_bond:int,
         Get bond length
 
         Args:
-        - structure: biotite.structure.AtomArray
-        - chain: str
-        - r1_bond: int
-        - r2_bond: int
-        - r2_bond_name: str
+            structure (biotite.structure.AtomArray)
+            chain (str)
+            r1_bond (int)
+            r2_bond (int)
+            r2_bond_name (str)
 
     """
     bond_length = None
@@ -59,14 +59,14 @@ def get_bond_stats(structure:struc.AtomArray, chain:str, r1_bond:int,
         Get bond zscore
 
         Args:
-        - structure: biotite.structure.AtomArray
-        - chain: str
-        - r1_bond: int
-        - r2_bond: int
-        - r2_bond_name: str
+            structure (biotite.structure.AtomArray)
+            chain (str)
+            r1_bond (int)
+            r2_bond (int)
+            r2_bond_name (str)
 
         Returns:
-        - (bond_length:float, bond_length_zscore:float, bond_length_allowed:bool)
+            (bond_length:float, bond_length_zscore:float, bond_length_allowed:bool)
 
     """
     # Get bond length

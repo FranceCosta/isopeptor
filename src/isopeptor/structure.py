@@ -11,10 +11,10 @@ def get_structure(pdb_file_path: str) -> tuple:
         Load structure and remove hydrogens and hetero atoms
 
         Args:
-        - pdb_file_path
+            pdb_file_path (str): path to input pdb file
 
         Rises:
-        - FileNotFoundError if pdb_file_path not found
+             FileNotFoundError if pdb_file_path not found
 
     """
     if not os.path.isfile(pdb_file_path):

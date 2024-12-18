@@ -28,11 +28,11 @@ class Isopeptide:
         with the lowest RMSD is retained.
 
         Attributes:
-            struct_dir: str where pdb/cif files are located
-            distance: float that specifies permissivity of jess search
-            jess_output: None | str that stores jess raw output for debug purposes
-            isopeptide_bonds: list that stores isopeptide bonds as BondElement elements
-            fixed_r_asa: float | None which ranges between 0 and 1 that fixes r_asa allowing to skip its calculation
+            struct_dir (str): where pdb/cif files are located
+            distance (float): that specifies permissivity of jess search
+            jess_output (None | str): that stores jess raw output for debug purposes
+            isopeptide_bonds (list): stores isopeptide bonds as BondElement elements
+            fixed_r_asa (float | None): which ranges between 0 and 1 that fixes r_asa allowing to skip its calculation
 
         Usage:
             
@@ -191,7 +191,7 @@ class Isopeptide:
         
             Saveisopeptide bond results in .csv format
             Args:
-            - output_table: str, path to output table
+                output_table (str): path to output table
             Usage:
             >>> from isopeptor.isopeptide import Isopeptide
             >>> i = Isopeptide("tests/data/test_structures", distance=1.5, fixed_r_asa=0.1)
@@ -307,7 +307,7 @@ class Isopeptide:
             Load pyjess._jess.Hit as list of bondElement in self.isopeptide_bonds
 
             Raises:
-            - ValueError if number of residues found is not expected
+                ValueError if number of residues found is not expected
 
         """
         for hit in self.jess_hits:

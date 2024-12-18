@@ -2,17 +2,18 @@
 
 ![workflow](https://github.com/user-attachments/assets/0778c7d3-23e0-4936-ad49-1342f89c98a9)
 
-Isopeptide bond prediction from .pdb/.cif structure. Method described in "Isopeptor: a tool for detecting intramolecular isopeptide bonds in protein structures".
+Python package for the detection of intamolecular isopeptide bonds in protein structures.  The method described in "Isopeptor: a tool for detecting intramolecular isopeptide bonds in protein structures".
 
-The method can be accessed via [this google colab](https://colab.research.google.com/github/FranceCosta/Isopeptor_development/blob/main/notebooks/Isopeptide_finder.ipynb) or installed and run locally.
+Isopeptor can be accessed via [this google colab](https://colab.research.google.com/github/FranceCosta/Isopeptor_development/blob/main/notebooks/Isopeptide_finder.ipynb) or installed and run locally.
 
 ## Installation
 
 ```
-git clone https://github.com/FranceCosta/isopeptor
-cd isopeptor 
-pip install .
+pip install isopeptor
 ```
+
+## Input
+Protein structure files in PDB or CIF format.
 
 ## Usage
 
@@ -151,4 +152,4 @@ python -m unittest discover -s tests -p "test_isopeptide.py"
 
 ## Notes
 
-- .CIF file parsing is handled via .CIF to .PDB conversion at the moment at may not be suitable for very large protein structures.
+- .CIF file parsing is handled via .CIF to .PDB conversion at the moment and it is not suitable for very large protein structures.

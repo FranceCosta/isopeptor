@@ -12,7 +12,7 @@ def get_structure_asa(pdb_file_path: str) -> tuple:
         Return structure and ASA
 
         Args:
-        - pdb_file_path
+            pdb_file_path (str): path to PDB structure
 
     """
     # Load structure

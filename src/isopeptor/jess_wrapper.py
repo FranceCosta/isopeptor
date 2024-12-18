@@ -10,7 +10,8 @@ import biotite.structure.io.pdbx as pdbx
 import biotite.structure.io.pdb as pdb
 import warnings
 
-def run_jess(structure_files: str, distance: float, templates = Path(__file__).parent / "resources" / "data" / "template_structures") -> list:
+def run_jess(structure_files: str, distance: float, 
+            templates = Path(__file__).parent / "resources" / "data" / "template_structures") -> list:
     """
     
         Runs Jess using stored isopeptide bond templates (default templates). 
@@ -19,17 +20,17 @@ def run_jess(structure_files: str, distance: float, templates = Path(__file__).p
         If .cif files are found they are converted into .pdb models (and stored in "./converted_models/").
 
         Args:
-        - structure_files: list containing paths to .cif and .pdb files
-        - distance: used to set rmsd_threshold, distance_cutoff, max_allowed_distance jess parameters
+            structure_files (list): containing paths to .cif and .pdb files
+            distance (float): used to set rmsd_threshold, distance_cutoff, max_allowed_distance jess parameters
                                higher values will cause a more permissive search. Note that this does not influence
                                probability prediction
-        - templates: directory containing templates to be used with .pdb extension
+            templates (str): directory containing templates to be used with .pdb extension
 
         Returns:
-        - list of pyjess._jess.Hit 
+            list of pyjess._jess.Hit 
 
         Rises:
-        - FileNotFoundError if template or pdb/cif files are not found
+            FileNotFoundError if template or pdb/cif files are not found
 
     """
     template_files = [str(p.resolve()) for p in Path(templates).glob("*.pdb")]

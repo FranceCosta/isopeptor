@@ -132,12 +132,12 @@ def get_dihedral_angles_stats(structure:struc.AtomArray, chain:str,
     Get dihedral torsion angles and stats about their distribution
 
     Args:
-    - structure: biotite.structure.AtomArray
-    - chain: str
-    - r1_bond: int
-    - r2_bond: int
-    - r2_bond_name: str
-    - bond_type: str
+        structure (biotite.structure.AtomArray)
+        chain (str)
+        r1_bond (int)
+        r2_bond (int)
+        r2_bond_name (str)
+        bond_type (str)
 
     Returns:
             (

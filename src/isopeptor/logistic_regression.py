@@ -26,8 +26,8 @@ def predict(rmsd:float, r_asa:float)->float:
         Predicts isopeptide bond probability using rmsd and r_asa
 
         Args:
-            rmsd: rmsd with template
-            r_asa: relative solvent accessible surface
+            rmsd (float): rmsd with template
+            r_asa (float): relative solvent accessible surface
 
     """
     clf = get_model()
