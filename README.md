@@ -4,7 +4,7 @@
 
 Isopeptide bond prediction from .pdb/.cif structure. Method described in "Isopeptor: a tool for detecting intramolecular isopeptide bonds in protein structures".
 
-The method can be accessed via [this google colab]() or installed and run locally.
+The method can be accessed via [this google colab](https://colab.research.google.com/github/FranceCosta/Isopeptor_development/blob/main/notebooks/Isopeptide_finder.ipynb) or installed and run locally.
 
 ## Installation
 
