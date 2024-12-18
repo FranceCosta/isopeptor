@@ -1,45 +1,28 @@
-[build-system]
-requires = ["setuptools>=42", "wheel", "numpy>=2.1.2"]
-build-backend = "setuptools.build_meta"
-
-[project]
+[tool.poetry]
 name = "isopeptor"
-version = "0.0.6"
+version = "0.0.71"
 description = "Package for isopeptide bond prediction and analysis based on pyjess"
-authors = [{name = "Francesco Costa", email = "fcosta@ebi.ac.uk"}]
-requires-python = ">=3.8"
-license = {text = "MIT License"}
+authors = ["Francesco Costa <fcosta@ebi.ac.uk>"]
+license = "MIT"
 readme = "README.md"
-
-# Project metadata
-classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3",
-]
-keywords = ["isopeptide", "prediction", "protein", "bioinformatics"]
-
-# Dependencies
-dependencies = [
-    "biotite>=1.0.1",
-    "joblib",
-    "scikit-learn>=1.5.2",
-    "pyjess>=0.3.3",
+homepage = "https://github.com/FranceCosta/isopeptor"
+repository = "https://github.com/FranceCosta/isopeptor"
+documentation = "https://github.com/FranceCosta/isopeptor/README.md"
+packages = [
+    { include = "isopeptor", from = "src" }
 ]
 
-[project.urls]
-Source = "https://github.com/FranceCosta/isopeptor"
-"Bug Reports" = "https://github.com/FranceCosta/isopeptor/issues"
+[tool.poetry.dependencies]
+python = ">=3.10"
+numpy = "1.*"
+biotite = "1.*"
+joblib = "1.4.*"
+scikit-learn = ">=1.5.*"
+pyjess = ">=0.3.*"
 
-# Console scripts entry point
-[project.scripts]
+[tool.poetry.scripts]
 isopeptor = "isopeptor.cli:main"
 
-# Package structure
-[tool.setuptools]
-packages = ["isopeptor"]
-package-dir = {"" = "src"}
-
-[tool.setuptools.package-data]
-"isopeptor" = ["resources/data/template_structures*", "resources/models/*.pkl"]
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
