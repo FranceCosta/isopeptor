@@ -23,17 +23,7 @@ Module Reference
 Submodules
 ----------
 
-.. automodule:: isopeptor.asa
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-.. automodule:: isopeptor.bond_length
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-.. automodule:: isopeptor.bond
+.. automodule:: isopeptor.isopeptide
     :members:
     :undoc-members:
     :show-inheritance:
@@ -43,29 +33,5 @@ Submodules
     :undoc-members:
     :show-inheritance:
 
-.. automodule:: isopeptor.constants
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-.. automodule:: isopeptor.dihedrals
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-.. automodule:: isopeptor.isopeptide
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-.. automodule:: isopeptor.jess_wrapper
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-.. automodule:: isopeptor.logistic_regression
-    :members:
-    :undoc-members:
-    :show-inheritance:
 
 
