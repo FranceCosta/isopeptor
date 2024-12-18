@@ -41,23 +41,7 @@ class Isopeptide:
             >>> i = Isopeptide("tests/data/test_structures", distance=1.5, fixed_r_asa=0.1)
             >>> i.predict()
             >>> i.isopeptide_bonds[0]
-            BondElement(struct_file=tests/data/test_structures/8beg.pdb, protein_name=8beg, rmsd=0.0, template=8beg_A_590_636_729, chain=A, r1_bond=590, r_cat=636, r2_bond=729, r1_bond_name=LYS, r_cat_name=ASP, r2_bond_name=ASN, bond_type=CnaA-like, r_asa=0.1, probability=0.986)
-            >>> i.print_tabular()
-            protein_name        probability     chain   r1_bond r_cat   r2_bond r1_bond_name    r_cat_name      r2_bond_name    bond_type       rmsd    r_asa   template
-            8beg                0.986           A       590     636     729     LYS             ASP             ASN             CnaA-like       0.0     0.1     8beg_A_590_636_729   
-            8beg                0.986           A       756     806     894     LYS             ASP             ASN             CnaA-like       0.0     0.1     8beg_A_756_806_894   
-            8beg                0.986           A       922     973     1049    LYS             ASP             ASN             CnaA-like       0.0     0.1     8beg_A_922_973_1049  
-            8beg                0.986           A       1076    1123    1211    LYS             ASP             ASN             CnaA-like       0.0     0.1     8beg_A_1076_1123_1211
-            5dz9                0.986           A       556     606     703     LYS             ASP             ASN             CnaA-like       0.0     0.1     4z1p_A_3_53_150      
-            5dz9                0.986           A       730     776     861     LYS             ASP             ASN             CnaA-like       0.0     0.1     4z1p_A_177_223_308   
-            4z1p                0.986           A       3       53      150     LYS             ASP             ASN             CnaA-like       0.0     0.1     4z1p_A_3_53_150      
-            4z1p                0.986           A       177     223     308     LYS             ASP             ASN             CnaA-like       0.0     0.1     4z1p_A_177_223_308   
-            7woi                0.935           B       57      158     195     LYS             GLU             ASN             CnaB-like       0.226   0.1     5j4m_A_47_139_172    
-            7woi                0.89            A       203     246     318     LYS             ASP             ASN             CnaA-like       0.306   0.1     2woy_A_1259_1307_1393
-            7woi                0.807           A       355     435     466     LYS             GLU             ASN             CnaB-like       0.398   0.1     6n0a_A_15_102_153    
-            1amx                0.793           A       176     209     293     LYS             ASP             ASN             CnaA-like       0.411   0.1     2f68_X_176_209_293   
-            6to1_af             0.495           A       13      334     420     LYS             ASP             ASN             CnaA-like       0.601   0.1     6to1_A_111_432_518   
-            8beg                0.016           B       662     591     589     LYS             GLU             ASN             CnaB-like       1.176   0.1     3pg2_A_387_471_515                     
+            BondElement(struct_file=tests/data/test_structures/8beg.pdb, protein_name=8beg, rmsd=0.0, template=8beg_A_590_636_729, chain=A, r1_bond=590, r_cat=636, r2_bond=729, r1_bond_name=LYS, r_cat_name=ASP, r2_bond_name=ASN, bond_type=CnaA-like, r_asa=0.1, probability=0.986)                     
             
             Calculate solvent accessible area for a more accurate (and slow) prediction
             >>> i = Isopeptide("tests/data/test_structures", distance=1.5)
@@ -114,6 +98,27 @@ class Isopeptide:
         """
         
             Print isopeptide bonds in a tabular format
+
+            Usage:
+            >>> from isopeptor.isopeptide import Isopeptide
+            >>> i = Isopeptide("tests/data/test_structures", distance=1.5, fixed_r_asa=0.1)
+            >>> i.predict()
+            >>> i.print_tabular()
+            protein_name        probability     chain   r1_bond r_cat   r2_bond r1_bond_name    r_cat_name      r2_bond_name    bond_type       rmsd    r_asa   template
+            8beg                0.986           A       590     636     729     LYS             ASP             ASN             CnaA-like       0.0     0.1     8beg_A_590_636_729   
+            8beg                0.986           A       756     806     894     LYS             ASP             ASN             CnaA-like       0.0     0.1     8beg_A_756_806_894   
+            8beg                0.986           A       922     973     1049    LYS             ASP             ASN             CnaA-like       0.0     0.1     8beg_A_922_973_1049  
+            8beg                0.986           A       1076    1123    1211    LYS             ASP             ASN             CnaA-like       0.0     0.1     8beg_A_1076_1123_1211
+            5dz9                0.986           A       556     606     703     LYS             ASP             ASN             CnaA-like       0.0     0.1     4z1p_A_3_53_150      
+            5dz9                0.986           A       730     776     861     LYS             ASP             ASN             CnaA-like       0.0     0.1     4z1p_A_177_223_308   
+            4z1p                0.986           A       3       53      150     LYS             ASP             ASN             CnaA-like       0.0     0.1     4z1p_A_3_53_150      
+            4z1p                0.986           A       177     223     308     LYS             ASP             ASN             CnaA-like       0.0     0.1     4z1p_A_177_223_308   
+            7woi                0.935           B       57      158     195     LYS             GLU             ASN             CnaB-like       0.226   0.1     5j4m_A_47_139_172    
+            7woi                0.89            A       203     246     318     LYS             ASP             ASN             CnaA-like       0.306   0.1     2woy_A_1259_1307_1393
+            7woi                0.807           A       355     435     466     LYS             GLU             ASN             CnaB-like       0.398   0.1     6n0a_A_15_102_153    
+            1amx                0.793           A       176     209     293     LYS             ASP             ASN             CnaA-like       0.411   0.1     2f68_X_176_209_293   
+            6to1_af             0.495           A       13      334     420     LYS             ASP             ASN             CnaA-like       0.601   0.1     6to1_A_111_432_518   
+            8beg                0.016           B       662     591     589     LYS             GLU             ASN             CnaB-like       1.176   0.1     3pg2_A_387_471_515
         
         """
         if not self.geometry_calculated:
@@ -122,7 +127,20 @@ class Isopeptide:
             "r1_bond_name", "r_cat_name", "r2_bond_name", "bond_type",
             "rmsd", "r_asa", "template"
             ]
-            print("\t".join(headers))
+            # Print the header row using formatted widths
+            column_widths = []
+            for header in headers:
+                # Find the maximum length among the bond attributes for the current header
+                max_bond_length = 0
+                for bond in self.isopeptide_bonds:
+                    bond_value_length = len(str(getattr(bond, header)))
+                    if bond_value_length > max_bond_length:
+                        max_bond_length = bond_value_length
+                # Compare it with the length of the header and append the maximum to column_widths
+                column_widths.append(max(len(header), max_bond_length))
+            formatted_header = "\t".join(f"{header:<{column_widths[i]}}" for i, header in enumerate(headers))
+            print(formatted_header)
+            
             if len(self.isopeptide_bonds) > 0:
                 column_widths = [max(len(header), max(len(str(getattr(bond, header))) for bond in self.isopeptide_bonds)) for header in headers]
                 for bond in self.isopeptide_bonds:
@@ -138,29 +156,93 @@ class Isopeptide:
                 "protein_name", "probability", "chain", "r1_bond", "r_cat", "r2_bond",
                 "r1_bond_name", "r_cat_name", "r2_bond_name", "bond_type",
                 "rmsd", "r_asa", "template", "bond_length", "bond_length_zscore", "bond_length_allowed",
-                "phi", "psi", "omega", "phi_psi_likelihood", "phi_psi_allowed", "omega_psi_likelihood",
+                "pseudo_phi", "pseudo_psi", "pseudo_omega", "phi_psi_likelihood", "phi_psi_allowed", "omega_psi_likelihood",
                 "omega_psi_allowed",  "omega_phi_likelihood", "omega_phi_allowed"
             ]
-
-            if len(self.isopeptide_bonds) > 0:
-                column_widths = [max(len(header), max(len(str(getattr(bond, header))) for bond in self.isopeptide_bonds)) for header in headers]
+            # Print the header row using formatted widths
+            column_widths = []
+            for header in headers:
+                # Find the maximum length among the bond attributes for the current header
+                max_bond_length = 0
+                for bond in self.isopeptide_bonds:
+                    bond_value_length = len(str(getattr(bond, header)))
+                    if bond_value_length > max_bond_length:
+                        max_bond_length = bond_value_length
+                # Compare it with the length of the header and append the maximum to column_widths
+                column_widths.append(max(len(header), max_bond_length))
                 
-                # Print the header row using formatted widths
-                formatted_header = "\t".join(f"{header:<{column_widths[i]}}" for i, header in enumerate(headers))
-                print(formatted_header)
-                
+            formatted_header = "\t".join(f"{header:<{column_widths[i]}}" for i, header in enumerate(headers))
+            print(formatted_header)
+            if len(self.isopeptide_bonds) > 0:                
                 # Print each data row using the same formatting
                 for bond in self.isopeptide_bonds:
                     row = [
                         bond.protein_name, bond.probability, bond.chain, bond.r1_bond, bond.r_cat, bond.r2_bond, 
                         bond.r1_bond_name, bond.r_cat_name, bond.r2_bond_name, bond.bond_type,
                         bond.rmsd, bond.r_asa, bond.template, bond.bond_length, bond.bond_length_zscore, bond.bond_length_allowed,
-                        bond.phi, bond.psi, bond.omega, bond.phi_psi_likelihood, bond.phi_psi_allowed, bond.omega_psi_likelihood,
+                        bond.pseudo_phi, bond.pseudo_psi, bond.pseudo_omega, bond.phi_psi_likelihood, bond.phi_psi_allowed, bond.omega_psi_likelihood,
                         bond.omega_psi_allowed, bond.omega_phi_likelihood, bond.omega_phi_allowed
                     ]
                     formatted_row = "\t".join(f"{str(item):<{column_widths[i]}}" for i, item in enumerate(row))
                     print(formatted_row)
+    
+    def save_csv(self, output_table: str = "results.csv") -> None:
+        """
+        
+            Saveisopeptide bond results in .csv format
+            Args:
+            - output_table: str, path to output table
+            Usage:
+            >>> from isopeptor.isopeptide import Isopeptide
+            >>> i = Isopeptide("tests/data/test_structures", distance=1.5, fixed_r_asa=0.1)
+            >>> i.predict()
+            >>> i.save_csv()
+        
+        """
+        with open(output_table, "wt") as fh:
+            if not self.geometry_calculated:
+                headers = [
+                "protein_name", "probability", "chain", "r1_bond", "r_cat", "r2_bond",
+                "r1_bond_name", "r_cat_name", "r2_bond_name", "bond_type",
+                "rmsd", "r_asa", "template"
+                ]
+                fh.write(",".join(headers)+"\n")
+                if len(self.isopeptide_bonds) > 0:
+                    for bond in self.isopeptide_bonds:
+                        row = [
+                            bond.protein_name, str(bond.probability), str(bond.chain), str(bond.r1_bond), 
+                            str(bond.r_cat), str(bond.r2_bond), 
+                            bond.r1_bond_name, bond.r_cat_name, bond.r2_bond_name, bond.bond_type,
+                            str(bond.rmsd), str(bond.r_asa), bond.template
+                        ]
+                        formatted_row = ",".join(row)
+                        fh.write(formatted_row+"\n")
+            else:
+                headers = [
+                    "protein_name", "probability", "chain", "r1_bond", "r_cat", "r2_bond",
+                    "r1_bond_name", "r_cat_name", "r2_bond_name", "bond_type",
+                    "rmsd", "r_asa", "template", "bond_length", "bond_length_zscore", "bond_length_allowed",
+                    "pseudo_phi", "pseudo_psi", "pseudo_omega", "phi_psi_likelihood", "phi_psi_allowed", "omega_psi_likelihood",
+                    "omega_psi_allowed",  "omega_phi_likelihood", "omega_phi_allowed"
+                ]
 
+                if len(self.isopeptide_bonds) > 0:
+                    
+                    formatted_header = ",".join(headers)
+                    fh.write(formatted_header+"\n")
+                    for bond in self.isopeptide_bonds:
+                        row = [
+                            bond.protein_name, str(bond.probability), str(bond.chain), 
+                            str(bond.r1_bond), str(bond.r_cat), str(bond.r2_bond), 
+                            bond.r1_bond_name, bond.r_cat_name, bond.r2_bond_name, bond.bond_type,
+                            str(bond.rmsd), str(bond.r_asa), bond.template, str(bond.bond_length), 
+                            str(bond.bond_length_zscore), bond.bond_length_allowed,
+                            str(bond.pseudo_phi), str(bond.pseudo_psi), str(bond.pseudo_omega), 
+                            str(bond.phi_psi_likelihood), str(bond.phi_psi_allowed), str(bond.omega_psi_likelihood),
+                            bond.omega_psi_allowed, bond.omega_phi_likelihood, bond.omega_phi_allowed
+                        ]
+                        formatted_row = ",".join(row)
+                        fh.write(formatted_row+"\n")
 
     def get_geometry(self):
         """
@@ -174,21 +256,21 @@ class Isopeptide:
             >>> i.predict()
             >>> i.get_geometry()
             >>> i.print_tabular()
-            protein_name	probability	chain	r1_bond	r_cat	r2_bond	r1_bond_name	r_cat_name	r2_bond_name	bond_type	rmsd 	r_asa	template             	bond_length	bond_length_zscore	bond_length_allowed	phi     	psi     	omega  	phi_psi_likelihood	phi_psi_allowed	omega_psi_likelihood	omega_psi_allowed	omega_phi_likelihood	omega_phi_allowed
-            8beg        	0.986      	A    	590    	636  	729    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	8beg_A_590_636_729   	1.33       	0.024             	True               	92.305  	-123.286	-0.032 	-8.706            	True           	-7.801              	True             	-8.797              	True             
-            8beg        	0.986      	A    	756    	806  	894    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	8beg_A_756_806_894   	1.328      	0.0               	True               	-114.423	-130.136	44.142 	-10.503           	False          	-10.472             	True             	-10.503             	False            
-            8beg        	0.986      	A    	922    	973  	1049   	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	8beg_A_922_973_1049  	1.333      	0.061             	True               	70.944  	-131.258	17.005 	-9.737            	True           	-8.997              	True             	-9.882              	True             
-            8beg        	0.986      	A    	1076   	1123 	1211   	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	8beg_A_1076_1123_1211	1.341      	0.159             	True               	102.317 	-124.836	2.258  	-8.286            	True           	-7.882              	True             	-8.233              	True             
-            5dz9        	0.986      	A    	556    	606  	703    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	4z1p_A_3_53_150      	1.291      	-0.451            	True               	109.407 	-112.845	-8.356 	-7.72             	True           	-7.722              	True             	-7.884              	True             
-            5dz9        	0.986      	A    	730    	776  	861    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	4z1p_A_177_223_308   	1.332      	0.049             	True               	97.334  	-122.501	6.356  	-8.391            	True           	-7.892              	True             	-8.633              	True             
-            4z1p        	0.986      	A    	3      	53   	150    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	4z1p_A_3_53_150      	1.291      	-0.451            	True               	109.407 	-112.845	-8.356 	-7.72             	True           	-7.722              	True             	-7.884              	True             
-            4z1p        	0.986      	A    	177    	223  	308    	LYS         	ASP       	ASN         	CnaA-like	0.0  	0.1  	4z1p_A_177_223_308   	1.332      	0.049             	True               	97.334  	-122.501	6.356  	-8.391            	True           	-7.892              	True             	-8.633              	True             
-            7woi        	0.935      	B    	57     	158  	195    	LYS         	GLU       	ASN         	CnaB-like	0.226	0.1  	5j4m_A_47_139_172    	1.312      	-0.195            	True               	-148.85 	71.47   	179.899	-9.376            	True           	-9.126              	True             	-9.675              	True             
-            7woi        	0.89       	A    	203    	246  	318    	LYS         	ASP       	ASN         	CnaA-like	0.306	0.1  	2woy_A_1259_1307_1393	1.336      	0.098             	True               	136.992 	-158.356	4.495  	-14.872           	False          	-12.529             	False            	-9.337              	True             
-            7woi        	0.807      	A    	355    	435  	466    	LYS         	GLU       	ASN         	CnaB-like	0.398	0.1  	6n0a_A_15_102_153    	1.328      	0.0               	True               	106.44  	118.566 	168.851	-11.023           	False          	-10.77              	False            	-10.955             	False            
-            1amx        	0.793      	A    	176    	209  	293    	LYS         	ASP       	ASN         	CnaA-like	0.411	0.1  	2f68_X_176_209_293   	3.345      	24.598            	False              	96.887  	-147.455	66.383 	-10.918           	False          	-14.477             	False            	-25.835             	False            
-            6to1_af     	0.495      	A    	13     	334  	420    	LYS         	ASP       	ASN         	CnaA-like	0.601	0.1  	6to1_A_111_432_518   	2.928      	19.512            	False              	83.132  	-155.408	131.186	-13.496           	False          	-51.581             	False            	-15.775             	False            
-            8beg        	0.016      	B    	662    	591  	589    	LYS         	GLU       	ASN         	CnaB-like	1.176	0.1  	3pg2_A_387_471_515   	4.806      	42.415            	False              	-175.107	131.767 	146.384	-11.214           	False          	-13.479             	False            	-11.449             	False            
+                protein_name        probability     chain   r1_bond r_cat   r2_bond r1_bond_name    r_cat_name      r2_bond_name    bond_type       rmsd    r_asa      template                bond_length     bond_length_zscore      bond_length_allowed     pseudo_phi      pseudo_psi      pseudo_omega    phi_psi_likelihood phi_psi_allowed omega_psi_likelihood    omega_psi_allowed       omega_phi_likelihood    omega_phi_allowed
+                8beg                0.986           A       590     636     729     LYS             ASP             ASN             CnaA-like       0.0     0.1        8beg_A_590_636_729      1.33            0.024                   True                    92.305          -123.286        -0.032          -8.706             True            -7.801                  True                    -8.797                  True             
+                8beg                0.986           A       756     806     894     LYS             ASP             ASN             CnaA-like       0.0     0.1        8beg_A_756_806_894      1.328           -0.0                    True                    -114.423        -130.136        44.142          -10.503            False           -10.472                 True                    -10.503                 False            
+                8beg                0.986           A       922     973     1049    LYS             ASP             ASN             CnaA-like       0.0     0.1        8beg_A_922_973_1049     1.333           0.061                   True                    70.944          -131.258        17.005          -9.737             True            -8.997                  True                    -9.882                  True             
+                8beg                0.986           A       1076    1123    1211    LYS             ASP             ASN             CnaA-like       0.0     0.1        8beg_A_1076_1123_1211   1.341           0.159                   True                    102.317         -124.836        2.258           -8.286             True            -7.882                  True                    -8.233                  True             
+                5dz9                0.986           A       556     606     703     LYS             ASP             ASN             CnaA-like       0.0     0.1        4z1p_A_3_53_150         1.291           -0.451                  True                    109.407         -112.845        -8.356          -7.72              True            -7.722                  True                    -7.884                  True             
+                5dz9                0.986           A       730     776     861     LYS             ASP             ASN             CnaA-like       0.0     0.1        4z1p_A_177_223_308      1.332           0.049                   True                    97.334          -122.501        6.356           -8.391             True            -7.892                  True                    -8.633                  True             
+                4z1p                0.986           A       3       53      150     LYS             ASP             ASN             CnaA-like       0.0     0.1        4z1p_A_3_53_150         1.291           -0.451                  True                    109.407         -112.845        -8.356          -7.72              True            -7.722                  True                    -7.884                  True             
+                4z1p                0.986           A       177     223     308     LYS             ASP             ASN             CnaA-like       0.0     0.1        4z1p_A_177_223_308      1.332           0.049                   True                    97.334          -122.501        6.356           -8.391             True            -7.892                  True                    -8.633                  True             
+                7woi                0.935           B       57      158     195     LYS             GLU             ASN             CnaB-like       0.226   0.1        5j4m_A_47_139_172       1.312           -0.195                  True                    -148.85         71.47           179.899         -9.376             True            -9.126                  True                    -9.675                  True             
+                7woi                0.89            A       203     246     318     LYS             ASP             ASN             CnaA-like       0.306   0.1        2woy_A_1259_1307_1393   1.336           0.098                   True                    136.992         -158.356        4.495           -14.872            False           -12.529                 False                   -9.337                  True             
+                7woi                0.807           A       355     435     466     LYS             GLU             ASN             CnaB-like       0.398   0.1        6n0a_A_15_102_153       1.328           -0.0                    True                    106.44          118.566         168.851         -11.023            False           -10.77                  False                   -10.955                 False            
+                1amx                0.793           A       176     209     293     LYS             ASP             ASN             CnaA-like       0.411   0.1        2f68_X_176_209_293      3.345           24.598                  False                   96.887          -147.455        66.383          -10.918            False           -14.477                 False                   -25.835                 False            
+                6to1_af             0.495           A       13      334     420     LYS             ASP             ASN             CnaA-like       0.601   0.1        6to1_A_111_432_518      2.928           19.512                  False                   83.132          -155.408        131.186         -13.496            False           -51.581                 False                   -15.775                 False            
+                8beg                0.016           B       662     591     589     LYS             GLU             ASN             CnaB-like       1.176   0.1        3pg2_A_387_471_515      4.806           42.415                  False                   -175.107        131.767         146.384         -11.214            False           -13.479                 False                   -11.449                 False              
 
         """
         self.geometry_calculated = True
@@ -203,15 +285,15 @@ class Isopeptide:
                 # Get dihedrals and stats
                 angle_stats = get_dihedral_angles_stats(structure, bond.chain, bond.r1_bond, 
                                 bond.r2_bond, bond.r2_bond_name, bond.bond_type)
-                omega, phi, psi, phi_psi_likelihood, omega_psi_likelihood, omega_phi_likelihood, phi_psi_allowed, omega_psi_allowed, omega_phi_allowed = angle_stats
+                pseudo_omega, pseudo_phi, pseudo_psi, phi_psi_likelihood, omega_psi_likelihood, omega_phi_likelihood, phi_psi_allowed, omega_psi_allowed, omega_phi_allowed = angle_stats
 
                 # Load values into the bond instance
                 bond.bond_length = bond_length
                 bond.bond_length_zscore = bond_length_zscore
                 bond.bond_length_allowed = bond_length_allowed
-                bond.omega = omega
-                bond.phi = phi
-                bond.psi = psi
+                bond.pseudo_omega = pseudo_omega
+                bond.pseudo_phi = pseudo_phi
+                bond.pseudo_psi = pseudo_psi
                 bond.phi_psi_likelihood = phi_psi_likelihood
                 bond.omega_psi_likelihood = omega_psi_likelihood
                 bond.omega_phi_likelihood = omega_phi_likelihood

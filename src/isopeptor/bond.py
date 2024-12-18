@@ -38,9 +38,9 @@ class BondElement:
         self.bond_length: float | None = None
         self.bond_length_zscore: float | None = None
         self.bond_length_allowed: bool | None = None
-        self.phi: float | None = None
-        self.psi: float | None = None
-        self.omega: float | None = None
+        self.pseudo_phi: float | None = None
+        self.pseudo_psi: float | None = None
+        self.pseudo_omega: float | None = None
         self.phi_psi_likelihood: float | None = None
         self.phi_psi_allowed: bool | None = None
         self.omega_psi_likelihood: float | None = None

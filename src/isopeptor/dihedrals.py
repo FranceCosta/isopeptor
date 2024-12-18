@@ -141,23 +141,23 @@ def get_dihedral_angles_stats(structure:struc.AtomArray, chain:str,
 
     Returns:
             (
-                omega:float, phi:float, psi:float, phi_psi_likelihood:float, omega_psi_likelihood:float, 
+                pseudo_omega:float, pseudo_phi:float, pseudo_psi:float, phi_psi_likelihood:float, omega_psi_likelihood:float, 
                 omega_phi_likelihood:float, phi_psi_allowed:bool, omega_psi_allowed:bool, omega_phi_allowed:bool
             )
 
     """
-    omega, psi, phi = get_dihedral_angles(structure, chain, r1_bond, 
+    pseudo_omega, pseudo_psi, pseudo_phi = get_dihedral_angles(structure, chain, r1_bond, 
                     r2_bond, r2_bond_name)
-    if omega == None or psi == None or phi == None:
+    if pseudo_omega == None or pseudo_psi == None or pseudo_phi == None:
         phi_psi_likelihood, omega_psi_likelihood, omega_phi_likelihood, phi_psi_allowed, omega_psi_allowed, omega_phi_allowed = [None]*6
     else:
         # Load models
         kde = get_dihedral_distrib_models()
 
         # Get likelihoods
-        phi_psi_likelihood = round(kde[bond_type]["phi_psi"].score([[phi, psi]]), 3)
-        omega_psi_likelihood = round(kde[bond_type]["omega_psi"].score([[omega, psi]]), 3)
-        omega_phi_likelihood = round(kde[bond_type]["omega_phi"].score([[omega, phi]]), 3)
+        phi_psi_likelihood = round(kde[bond_type]["phi_psi"].score([[pseudo_phi, pseudo_psi]]), 3)
+        omega_psi_likelihood = round(kde[bond_type]["omega_psi"].score([[pseudo_omega, pseudo_psi]]), 3)
+        omega_phi_likelihood = round(kde[bond_type]["omega_phi"].score([[pseudo_omega, pseudo_phi]]), 3)
 
         phi_psi_allowed, omega_psi_allowed, omega_phi_allowed = [False]*3
         
@@ -171,7 +171,7 @@ def get_dihedral_angles_stats(structure:struc.AtomArray, chain:str,
             omega_phi_allowed = True
 
     return (
-                omega, phi, psi, phi_psi_likelihood, omega_psi_likelihood, omega_phi_likelihood, 
+                pseudo_omega, pseudo_phi, pseudo_psi, phi_psi_likelihood, omega_psi_likelihood, omega_phi_likelihood, 
                 phi_psi_allowed, omega_psi_allowed, omega_phi_allowed
             )
 

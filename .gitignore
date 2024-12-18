@@ -10,3 +10,4 @@ tmp
 converted_models
 dist
 poetry.lock
+results.csv
