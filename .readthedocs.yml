@@ -1,11 +1,9 @@
 version: 2
 
-# Define the build process for Sphinx
 sphinx:
   configuration: docs/conf.py
 
-# Specify the Python environment
 python:
-  version: 3.8  # Replace with your project's required Python version
+  version: 3.10
   install:
     - requirements: docs/requirements.txt
