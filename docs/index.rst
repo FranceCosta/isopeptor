@@ -16,19 +16,19 @@ Input
 -----
 Protein structures in PDB or CIF format.
 .. warning::
-    CIF file parsing is handled by CIF to PDB conversion at the moment. This is not suitable for very large protein structures.
+    CIF file parsing is handled by CIF to PDB conversion at the moment. 
+    This is not suitable for very large protein structures.
 
-How does isopeptor detect them?
--------------------------------
-Isopeptor employs `pyjess <https://pypi.org/project/pyjess/>`_ to perform a template-based search of input protein structures.
+Prediction
+----------
+Isopeptor employs `pyjess <https://pypi.org/project/pyjess/>`_ to perform a template-based search of input protein structures
+from a database of 140 high resolution intramolecular isopeptide bond structures. For each triad of residues detected by pyjess,
+only the template-match with the lowest `Root Mean Square Deviation (RMSD) <https://en.wikipedia.org/wiki/Root_mean_square_deviation>`
+is reported. 
+Isopeptor also calculates the `relative Accessible Solvent Area (rASA) <https://en.wikipedia.org/wiki/Relative_accessible_surface_area>`_
+RMSD and rASA are used by a `logistic regression model <https://en.wikipedia.org/wiki/Logistic_regression>`_ to 
+predict the presence of an **intramolecular isopeptide bond**.
 
---------
-
-1. Jess-based template scan is used to detect potential isopeptide bond signatures in target protein structures. A total of 140 templates coming from high quality structures are used for this purpose. Input structures can be in either PDB or CIF format. 
-2. If a site on the target protein structure matches with multiple templates, only the template-site match with the lowest RMSD is retained. 
-3. Relative Accessible Solvent Area (rASA) is calculated. 
-4. Both RMSD with the closest template and rASA are taken as input by the logistic regression model for isopeptide bond classification which outputs a probability. 
-5. An optional final step is used to evaluate the geometry of isopeptide bonds. Two metrics are used to compare the parameters with the dataset of high quality structures: bond length Z-score and Kernel Density Estimate likelihood of dihedral angles.
 
 Installation
 ------------
