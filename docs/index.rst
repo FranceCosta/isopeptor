@@ -1,11 +1,10 @@
 
 Isopeptor Documentation
 =======================
+This is a test. 
 
 .. automodule:: isopeptor.isopeptide
-    :members:
-    :undoc-members:
-    :show-inheritance:
+
 
 .. automodule:: isopeptor.cli
     :members:
