@@ -61,7 +61,7 @@ Full command line options are:
     It is useful for very high throughput screenings where high precision is not required.
 
 .. note::
-    
+
     To run a geometric evaluation use the `--eval_geometry` flag. 
     This will report bond length, dihedral angles (pseudo-psi,phi and psi) and statistical measures. 
-    See :ref:`Geometric evaluation` section for more information.
+    See the :ref:`Isopeptor Documentation:Geometric evaluation` section for more information.

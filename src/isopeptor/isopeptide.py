@@ -20,7 +20,7 @@ from isopeptor.dihedrals import get_dihedral_angles_stats
 class Isopeptide:
     """
     
-        Handles isopeptide bond prediction running jess via the jess_wrapper module
+        Handles isopeptide bond prediction running pyjess via the jess_wrapper module
         and solvent accessible area via the asa module. Stores isopeptide bond predictions
         as a list of BondElement. Prediction is run for all structures from struct_dir. 
         Structures in .pdb format are directly analysed. If structures are in .cif format, they are first converted into .pdb.
@@ -189,9 +189,11 @@ class Isopeptide:
     def save_csv(self, output_table: str = "results.csv") -> None:
         """
         
-            Saveisopeptide bond results in .csv format
+            Save isopeptide bond results in .csv format.
+            
             Args:
                 output_table (str): path to output table
+            
             Example:
                 >>> from isopeptor.isopeptide import Isopeptide
                 >>> i = Isopeptide("tests/data/test_structures", distance=1.5, fixed_r_asa=0.1)
@@ -248,7 +250,7 @@ class Isopeptide:
         """
         
             Get geometry measures (bond length and dihedral angles and map to existing distribution of measures from 
-            the database of PDB derived structures)
+            the database of PDB derived structures).
 
             Example:
                 >>> from isopeptor.isopeptide import Isopeptide
@@ -304,10 +306,10 @@ class Isopeptide:
     def _load_hits(self):
         """
 
-            Load pyjess._jess.Hit as list of bondElement in self.isopeptide_bonds
+            Load pyjess._jess.Hit as list of bondElement in self.isopeptide_bonds.
 
             Raises:
-                ValueError if number of residues found is not expected
+                ValueError if number of residues found is not expected.
 
         """
         for hit in self.jess_hits:
@@ -351,7 +353,7 @@ class Isopeptide:
     def _calc_rasa(self):
         """
 
-            Calculate r_asa for every isopeptide bond in every structure
+            Calculate r_asa for every isopeptide bond in every structure.
 
         """
         bonds = self.isopeptide_bonds
@@ -379,7 +381,7 @@ class Isopeptide:
     def _infer(self):
         """
 
-            Infer presence of isoeptide bond using logistic regression model
+            Infer presence of isoeptide bond using logistic regression model.
 
         """
         for bond in self.isopeptide_bonds:
@@ -388,7 +390,7 @@ class Isopeptide:
     def _infer_type(self):
         """
 
-            Infer isopeptide bond type (CnaA/B-like)
+            Infer isopeptide bond type (CnaA/B-like).
 
         """
         for bond in self.isopeptide_bonds:
