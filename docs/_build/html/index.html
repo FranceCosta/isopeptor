@@ -31,15 +31,8 @@
 
           <div class="body" role="main">
             
-  <section id="isopeptor-documentation">
-<h1>Isopeptor Documentation<a class="headerlink" href="#isopeptor-documentation" title="Link to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
-</div>
-</section>
-<section id="module-isopeptor">
-<span id="module-reference"></span><h1>Module Reference<a class="headerlink" href="#module-isopeptor" title="Link to this heading">¶</a></h1>
-<section id="module-isopeptor.isopeptide">
-<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-isopeptor.isopeptide" title="Link to this heading">¶</a></h2>
+  <section id="module-isopeptor.isopeptide">
+<span id="isopeptor-documentation"></span><h1>Isopeptor Documentation<a class="headerlink" href="#module-isopeptor.isopeptide" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="isopeptor.isopeptide.Isopeptide">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">isopeptor.isopeptide.</span></span><span class="sig-name descname"><span class="pre">Isopeptide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">struct_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixed_r_asa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/isopeptor/isopeptide.html#Isopeptide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isopeptor.isopeptide.Isopeptide" title="Link to this definition">¶</a></dt>
@@ -127,9 +120,8 @@ the database of PDB derived structures)</p>
 &gt;&gt;&gt; i = Isopeptide(“tests/data/test_structures”, distance=1.5, fixed_r_asa=0.1)
 &gt;&gt;&gt; i.predict()
 &gt;&gt;&gt; i.get_geometry()
-&gt;&gt;&gt; i.print_tabular()</p>
-<blockquote>
-<div><p>protein_name        probability     chain   r1_bond r_cat   r2_bond r1_bond_name    r_cat_name      r2_bond_name    bond_type       rmsd    r_asa      template                bond_length     bond_length_zscore      bond_length_allowed     pseudo_phi      pseudo_psi      pseudo_omega    phi_psi_likelihood phi_psi_allowed omega_psi_likelihood    omega_psi_allowed       omega_phi_likelihood    omega_phi_allowed
+&gt;&gt;&gt; i.print_tabular()
+protein_name        probability     chain   r1_bond r_cat   r2_bond r1_bond_name    r_cat_name      r2_bond_name    bond_type       rmsd    r_asa      template                bond_length     bond_length_zscore      bond_length_allowed     pseudo_phi      pseudo_psi      pseudo_omega    phi_psi_likelihood phi_psi_allowed omega_psi_likelihood    omega_psi_allowed       omega_phi_likelihood    omega_phi_allowed
 8beg                0.986           A       590     636     729     LYS             ASP             ASN             CnaA-like       0.0     0.1        8beg_A_590_636_729      1.33            0.024                   True                    92.305          -123.286        -0.032          -8.706             True            -7.801                  True                    -8.797                  True
 8beg                0.986           A       756     806     894     LYS             ASP             ASN             CnaA-like       0.0     0.1        8beg_A_756_806_894      1.328           -0.0                    True                    -114.423        -130.136        44.142          -10.503            False           -10.472                 True                    -10.503                 False
 8beg                0.986           A       922     973     1049    LYS             ASP             ASN             CnaA-like       0.0     0.1        8beg_A_922_973_1049     1.333           0.061                   True                    70.944          -131.258        17.005          -9.737             True            -8.997                  True                    -9.882                  True
@@ -144,7 +136,6 @@ the database of PDB derived structures)</p>
 1amx                0.793           A       176     209     293     LYS             ASP             ASN             CnaA-like       0.411   0.1        2f68_X_176_209_293      3.345           24.598                  False                   96.887          -147.455        66.383          -10.918            False           -14.477                 False                   -25.835                 False
 6to1_af             0.495           A       13      334     420     LYS             ASP             ASN             CnaA-like       0.601   0.1        6to1_A_111_432_518      2.928           19.512                  False                   83.132          -155.408        131.186         -13.496            False           -51.581                 False                   -15.775                 False
 8beg                0.016           B       662     591     589     LYS             GLU             ASN             CnaB-like       1.176   0.1        3pg2_A_387_471_515      4.806           42.415                  False                   -175.107        131.767         146.384         -11.214            False           -13.479                 False                   -11.449                 False</p>
-</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
@@ -208,7 +199,6 @@ protein_name        probability     chain   r1_bond r_cat   r2_bond r1_bond_name
 <span class="sig-prename descclassname"><span class="pre">isopeptor.cli.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/isopeptor/cli.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isopeptor.cli.main" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</section>
 </section>
 
 
