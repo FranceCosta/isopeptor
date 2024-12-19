@@ -36,7 +36,6 @@ predict the presence of **intramolecular isopeptide bonds**, which are assigned 
    :name: Figure 1. 
    :alt: Isopeptor workflow.
    :width: 600px
-
    Isopeptor workflow.
 
 Geometric evaluation

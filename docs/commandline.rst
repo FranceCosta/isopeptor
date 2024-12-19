@@ -6,7 +6,9 @@ Command line usage
 
 Usage
 -----
+
 Example:
+
 .. code-block:: console
     $ isopeptor tests/data/test_structures/
 
@@ -24,10 +26,12 @@ Example:
     6to1_af     	0.505      	A    	13     	334  	420    	LYS         	ASP       	ASN         	CnaA-like	0.548	0.002	4uzg_A_187_225_330
 
 To redirect the output to a `.tsv` file use:
+
 .. code-block:: console
     $ isopeptor tests/data/test_structures/ > output.tsv
 
 Full command line options are:
+
 .. code-block:: console
     
     $ isopeptor -h
