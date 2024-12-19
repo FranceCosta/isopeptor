@@ -4,11 +4,6 @@ Isopeptor Documentation
 Python package for the detection of intamolecular isopeptide bonds in protein structures.  
 The method described in **Isopeptor: a tool for detecting intramolecular isopeptide bonds in protein structures**.
 
-.. image:: figures/f2.png
-   :name: Figure 1. 
-   :alt: Isopeptor workflow.
-   :width: 600px
-
 Intramolecular Isopeptide bonds
 -------------------------------
 Intramolecular isopeptide bonds typically form between lysine and asparagine/aspartate residues, 
@@ -37,13 +32,20 @@ intramolecular isopeptide bonds form only in a buiried hydrophobic environment.
 RMSD and rASA are used by a `logistic regression model <https://en.wikipedia.org/wiki/Logistic_regression>`_ to 
 predict the presence of **intramolecular isopeptide bonds**, which are assigned for probability values above 0.5.
 
+.. image:: figures/f2.png
+   :name: Figure 1. 
+   :alt: Isopeptor workflow.
+   :width: 600px
+
+   Isopeptor workflow.
+
 Geometric evaluation
 --------------------
 
 .. image:: figures/bond_angles.png
    :name: Figure 2. 
    :alt: Isopeptor workflow.
-   :width: 600px
+   :width: 300px
 
 Isopeptor can optionally evaluate the quality of intramolecular isopeptide bonds. This is done using two metrics:
 
