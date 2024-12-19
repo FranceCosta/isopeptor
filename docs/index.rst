@@ -1,4 +1,4 @@
-Isopeptor Documentation
+Intramolecular ISOPEPtide bond detecTOR (ISOPEPTOR)
 =======================
 Python package for the detection of intamolecular isopeptide bonds in protein structures.  
 The method is described in **Isopeptor: a tool for detecting intramolecular isopeptide bonds in protein structures**.
@@ -11,19 +11,16 @@ When found in β-sandwich folds, they occur in CnaA domains (linking β-strands 
 CnaB domains (linking adjacent β-strands of the same β-sheet). 
 They stabilize protein structures against various stresses.
 
+Documentation
+------------------
+
 .. toctree::
 
    workflow
    installation
    commandline
    api
-
-
-Reference
----------
-
-The code can be found here: `https://github.com/FranceCosta/isopeptor <https://github.com/FranceCosta/isopeptor>`_.
-If you use isopeptor, please cite:
+   reference
 
 
 
