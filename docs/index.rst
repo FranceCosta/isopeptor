@@ -2,7 +2,7 @@
 Isopeptor Documentation
 =======================
 Python package for the detection of intamolecular isopeptide bonds in protein structures.  
-The method described in **Isopeptor: a tool for detecting intramolecular isopeptide bonds in protein structures**.
+The method is described in **Isopeptor: a tool for detecting intramolecular isopeptide bonds in protein structures**.
 
 Intramolecular Isopeptide bonds
 -------------------------------
