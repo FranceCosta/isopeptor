@@ -36,14 +36,14 @@ class Isopeptide:
 
         Example:
             
-            Use a fixed solvent accessible area for a quick prediction:
+            # Use a fixed solvent accessible area for a quick prediction:
             >>> from isopeptor.isopeptide import Isopeptide
             >>> i = Isopeptide("tests/data/test_structures", distance=1.5, fixed_r_asa=0.1)
             >>> i.predict()
             >>> i.isopeptide_bonds[0]
             BondElement(struct_file=tests/data/test_structures/8beg.pdb, protein_name=8beg, rmsd=0.0, template=8beg_A_590_636_729, chain=A, r1_bond=590, r_cat=636, r2_bond=729, r1_bond_name=LYS, r_cat_name=ASP, r2_bond_name=ASN, bond_type=CnaA-like, r_asa=0.1, probability=0.986)                     
             
-            Calculate solvent accessible area for a more accurate (and slow) prediction
+            # Calculate solvent accessible area for a more accurate (and slow) prediction
             >>> i = Isopeptide("tests/data/test_structures", distance=1.5)
             >>> i.predict()
     """

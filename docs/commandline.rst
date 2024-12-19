@@ -6,9 +6,10 @@ Command line usage
 
 Usage
 -----
-.. Example::
+.. code-block:: console
     
-    >>>isopeptor -h
+    $ isopeptor -h
+    
     usage: isopeptor [-h] [--distance DISTANCE] [--fixed_r_asa FIXED_R_ASA] [--eval_geometry] path_to_structure_files
 
     Run isopeptide bond prediction from command line. Usage: isopeptor path/to pdb files/ > isopeptide_bonds.csv
@@ -23,4 +24,3 @@ Usage
     --fixed_r_asa FIXED_R_ASA
                             Fixes the relative solvent accessible area using a value between 0 and 1 to speed up the prediction.
     --eval_geometry       Run geometric evaluation of isopeptide bonds.
-    

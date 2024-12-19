@@ -49,13 +49,42 @@ outside the 95th percentile distribution of values from our database.
     
 .. note::
     Isopeptide bond angles have been named after the peptide-bond dihedral angles nomenclature: 
-    pseudo φ is the angle around the bond between Asp/AsnCβ and Asp/Asn`Cγ`, ω between Asp/Asn`Cγ` and Lys`Nζ` bond, 
-    and ψ between  Lys`Nζ` and Lys`Cε` bond.
+    pseudo φ is the angle around the bond between Asp/Asn\ :sub:`Cβ`\ and Asp/Asn\ :sub:`Cγ`\, ω between Asp/Asn\ :sub:`Cγ`\ 
+    and Lys\ :sub:`Nζ`\ bond, and ψ between  Lys\ :sub:\`Nζ`\ and Lys\ :sub:`Cε`\ bond.
 
 Output
 ------
 Isopeptor output consists of the follwoing fields:
-* 
+
+* *protein_name*
+* *probability*
+* *chain*
+* *r1_bond*
+* *r_cat*
+* *r2_bond*
+* *r1_bond_name*
+* *r_cat_name*
+* *r2_bond_name*
+* *bond_type*
+* *rmsd*
+* *r_asa*
+* *template*
+
+And optional fields:
+
+* *bond_length*
+* bond_length_zscore
+* bond_length_allowed
+* pseudo_phi
+* pseudo_psi
+* pseudo_omega
+* phi_psi_likelihood
+* phi_psi_allowed 
+* omega_psi_likelihood
+* omega_psi_allowed
+* omega_phi_likelihood
+* omega_phi_allowed
+
 
 
 Installation
