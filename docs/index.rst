@@ -12,6 +12,12 @@ When found in β-sandwich folds, they occur in CnaA domains (linking β-strands 
 CnaB domains (linking adjacent β-strands of the same β-sheet). 
 They stabilize protein structures against various stresses.
 
+Input
+-----
+Protein structures in PDB or CIF format.
+.. warning::
+    CIF file parsing is handled by CIF to PDB conversion at the moment. This is not suitable for very large protein structures.
+
 How does isopeptor detect them?
 -------------------------------
 Isopeptor employs `pyjess <https://pypi.org/project/pyjess/>`_ to perform a template-based search of input protein structures.
