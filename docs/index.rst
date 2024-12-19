@@ -4,7 +4,18 @@ Isopeptor Documentation
 Python package for the detection of intamolecular isopeptide bonds in protein structures.  
 The method described in "Isopeptor: a tool for detecting intramolecular isopeptide bonds in protein structures".
 
-Workflow
+Intramolecular Isopeptide bonds
+-------------------------------
+Intramolecular isopeptide bonds typically form between lysine and asparagine/aspartate residues, 
+typically catalyzed by a nearby aspartate or glutamate. 
+When found in β-sandwich folds, they occur in CnaA domains (linking β-strands of opposing β-sheets) and 
+CnaB domains (linking adjacent β-strands of the same β-sheet). 
+They stabilize protein structures against various stresses.
+
+How does isopeptor detect them?
+-------------------------------
+Isopeptor employs `pyjess <https://pypi.org/project/pyjess/>`_ to perform a template-based search of input protein structures.
+
 --------
 
 1. Jess-based template scan is used to detect potential isopeptide bond signatures in target protein structures. A total of 140 templates coming from high quality structures are used for this purpose. Input structures can be in either PDB or CIF format. 
