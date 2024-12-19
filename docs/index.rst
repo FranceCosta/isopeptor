@@ -32,12 +32,12 @@ intramolecular isopeptide bonds form only in a buiried hydrophobic environment.
 RMSD and rASA are used by a `logistic regression model <https://en.wikipedia.org/wiki/Logistic_regression>`_ to 
 predict the presence of **intramolecular isopeptide bonds**, which are assigned for probability values above 0.5.
 
-.. image:: figures/f2.png
+.. figure:: figures/f2.png
    :name: Figure 1. 
    :alt: Isopeptor workflow.
    :width: 600px
    :align: center
-   
+
    Isopeptor workflow.
 
 Geometric evaluation
@@ -77,7 +77,7 @@ Isopeptor output consists of the follwoing fields:
 * *r_asa*: rASA (ranges between 0 and 1).
 * *template*: name of the closest template.
 
-And optional fields:
+And optional fields generated with geometric evaluation:
 
 * *bond_length*: bond length calculated between Lys\ :sub:`Nζ`\ and Asp/Asn\ :sub:`Cγ`\. If  Lys\ :sub:`Nζ`\ atom is missing, isopeptor will attempt using Asn\ :sub:`Nδ`\ instead.
 * *bond_length_zscore*: value of bond length Z-score.
