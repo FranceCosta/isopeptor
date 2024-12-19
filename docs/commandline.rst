@@ -10,6 +10,7 @@ Usage
 Example:
 
 .. code-block:: console
+
     $ isopeptor tests/data/test_structures/
 
     protein_name	probability	chain	r1_bond	r_cat	r2_bond	r1_bond_name	r_cat_name	r2_bond_name	bond_type	rmsd	r_asa	template
@@ -28,6 +29,7 @@ Example:
 To redirect the output to a `.tsv` file use:
 
 .. code-block:: console
+
     $ isopeptor tests/data/test_structures/ > output.tsv
 
 Full command line options are:
@@ -52,12 +54,14 @@ Full command line options are:
     --eval_geometry       Run geometric evaluation of isopeptide bonds.
 
 .. note::
+
     Specifying `--fixed_r_asa` with a relative solvent accessibile area between 0 and 
     1 allows skipping this time-consuming calculation. 
     The downside of it is that the prediction is less reliable. 
     It is useful for very high throughput screenings where high precision is not required.
 
 .. note::
+    
     To run a geometric evaluation use the `--eval_geometry` flag. 
     This will report bond length, dihedral angles (pseudo-psi,phi and psi) and statistical measures. 
     See :ref:`Geometric evaluation` section for more information.

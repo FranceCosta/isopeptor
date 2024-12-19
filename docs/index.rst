@@ -36,21 +36,24 @@ predict the presence of **intramolecular isopeptide bonds**, which are assigned 
    :name: Figure 1. 
    :alt: Isopeptor workflow.
    :width: 600px
+   :align: center
+   
    Isopeptor workflow.
 
 Geometric evaluation
 --------------------
-
-.. image:: figures/bond_angles.png
-   :name: Figure 2. 
-   :alt: Isopeptor workflow.
-   :width: 300px
 
 Isopeptor can optionally evaluate the quality of intramolecular isopeptide bonds. This is done using two metrics:
 
 #. Bond lenght `Z-score <https://en.wikipedia.org/wiki/Standard_score>`_. Outliers are assigned for z-score values above 4 or below -4.
 #. `Kernel Density Estimate (KDE) <https://en.wikipedia.org/wiki/Kernel_density_estimation>`_ likelihood of pseudo dihedral angles (pseudo φ, pseudo ψ, pseudo ω). 6 different KDE models are employed: one for each combination of of angle pairs  and isopeptide bond type. Outliers are assigned for values of KDE likelihood outside the 95th percentile distribution of values from our database.
     
+.. image:: figures/bond_angles.png
+   :name: Figure 2. 
+   :alt: Isopeptor workflow.
+   :width: 400px
+   :align: center
+
 .. note::
     Isopeptide bond angles have been named after the peptide-bond dihedral angles nomenclature: 
     pseudo φ is the angle around the bond between Asp/Asn\ :sub:`Cβ`\ and Asp/Asn\ :sub:`Cγ`\, ω between Asp/Asn\ :sub:`Cγ`\ 
