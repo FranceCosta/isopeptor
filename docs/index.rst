@@ -15,6 +15,7 @@ They stabilize protein structures against various stresses.
 Input
 -----
 Protein structures in PDB or CIF format.
+
 .. warning::
     CIF file parsing is handled by CIF to PDB conversion at the moment. 
     This is not suitable for very large protein structures.
@@ -26,6 +27,8 @@ from a database of 140 high resolution intramolecular isopeptide bond structures
 only the template-match with the lowest `Root Mean Square Deviation (RMSD) <https://en.wikipedia.org/wiki/Root_mean_square_deviation>`
 is reported. 
 Isopeptor also calculates the `relative Accessible Solvent Area (rASA) <https://en.wikipedia.org/wiki/Relative_accessible_surface_area>`_
+We decided to include rASA calculation to take into consideration the fact that
+ intramolecular isopeptide bonds form only in a hydrophobic environment.
 RMSD and rASA are used by a `logistic regression model <https://en.wikipedia.org/wiki/Logistic_regression>`_ to 
 predict the presence of an **intramolecular isopeptide bond**.
 
