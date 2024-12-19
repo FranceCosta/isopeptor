@@ -39,13 +39,16 @@ predict the presence of **intramolecular isopeptide bonds**, which are assigned 
 
 Geometric evaluation
 --------------------
+
+.. image:: figures/bond_angles.png
+   :name: Figure 2. 
+   :alt: Isopeptor workflow.
+   :width: 600px
+
 Isopeptor can optionally evaluate the quality of intramolecular isopeptide bonds. This is done using two metrics:
 
 #. Bond lenght `Z-score <https://en.wikipedia.org/wiki/Standard_score>`_. Outliers are assigned for z-score values above 4 or below -4.
-#. `Kernel Density Estimate (KDE) <https://en.wikipedia.org/wiki/Kernel_density_estimation>`_ likelihood of pseudo dihedral angles
-(pseudo φ, pseudo ψ, pseudo ω). 6 different KDE models are employed: one for each combination of of angle pairs 
-and isopeptide bond type. Outliers are assigned for values of KDE likelihood 
-outside the 95th percentile distribution of values from our database.
+#. `Kernel Density Estimate (KDE) <https://en.wikipedia.org/wiki/Kernel_density_estimation>`_ likelihood of pseudo dihedral angles (pseudo φ, pseudo ψ, pseudo ω). 6 different KDE models are employed: one for each combination of of angle pairs  and isopeptide bond type. Outliers are assigned for values of KDE likelihood outside the 95th percentile distribution of values from our database.
     
 .. note::
     Isopeptide bond angles have been named after the peptide-bond dihedral angles nomenclature: 
@@ -57,35 +60,33 @@ Output
 Isopeptor output consists of the follwoing fields:
 
 * *protein_name*
-* *probability*
-* *chain*
-* *r1_bond*
-* *r_cat*
-* *r2_bond*
-* *r1_bond_name*
-* *r_cat_name*
-* *r2_bond_name*
-* *bond_type*
-* *rmsd*
-* *r_asa*
-* *template*
+* *probability*: probability calculated with the logistic regression model. Intramolecular isopeptide bonds are assigned for values above 0.5. 
+* *chain*: protein chain
+* *r1_bond*: position of the first residue involved in the intramolecular isopeptide bond (lysine)
+* *r_cat*: position of the intramolecular isopeptide bond catalytic residue (aspartate/glutamate)
+* *r2_bond*: position of the second residue involved in the intramolecular isopeptide bond (asparagine/aspartate)
+* *r1_bond_name*: name of the first residue involved in the intramolecular isopeptide bond (lysine)
+* *r_cat_name*: name of the intramolecular isopeptide bond catalytic residue (aspartate/glutamate)
+* *r2_bond_name*: name of the second residue involved in the intramolecular isopeptide bond (asparagine/aspartate)
+* *bond_type*: CnaA-like or CnaB-like. This is assigned based on the type of the closest template.
+* *rmsd*: RMSD (Å) with the closest template.
+* *r_asa*: rASA (ranges between 0 and 1).
+* *template*: name of the closest template.
 
 And optional fields:
 
-* *bond_length*
-* bond_length_zscore
-* bond_length_allowed
-* pseudo_phi
-* pseudo_psi
-* pseudo_omega
-* phi_psi_likelihood
-* phi_psi_allowed 
-* omega_psi_likelihood
-* omega_psi_allowed
-* omega_phi_likelihood
-* omega_phi_allowed
-
-
+* *bond_length*: bond length calculated between Lys\ :sub:`Nζ`\ and Asp/Asn\ :sub:`Cγ`\. If  Lys\ :sub:`Nζ`\ atom is missing, isopeptor will attempt using Asn\ :sub:`Nδ`\ instead.
+* *bond_length_zscore*: value of bond length Z-score.
+* *bond_length_allowed*: True/False. False if Z-score is below -4 or above 4.
+* *pseudo_phi*: value of pseudo ...
+* *pseudo_psi*: 
+* *pseudo_omega*: 
+* *phi_psi_likelihood*:
+* *phi_psi_allowed*:
+* *omega_psi_likelihood*:
+* *omega_psi_allowed*:
+* *omega_phi_likelihood*:
+* *omega_phi_allowed*:
 
 Installation
 ------------
