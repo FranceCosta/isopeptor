@@ -80,28 +80,17 @@ And optional fields:
 * *bond_length*: bond length calculated between Lys\ :sub:`Nζ`\ and Asp/Asn\ :sub:`Cγ`\. If  Lys\ :sub:`Nζ`\ atom is missing, isopeptor will attempt using Asn\ :sub:`Nδ`\ instead.
 * *bond_length_zscore*: value of bond length Z-score.
 * *bond_length_allowed*: True/False. False if Z-score is below -4 or above 4.
-* *pseudo_phi*: value of pseudo ...
-* *pseudo_psi*: 
-* *pseudo_omega*: 
-* *phi_psi_likelihood*:
-* *phi_psi_allowed*:
-* *omega_psi_likelihood*:
-* *omega_psi_allowed*:
-* *omega_phi_likelihood*:
-* *omega_phi_allowed*:
+* *pseudo_<phi,psi,omega>*: value of pseudo dihedral angles in degrees.
+* *<phi_psi,omega_psi,omega_phi>_likelihood*: KDE likelihood for given angle pairs.
+* *<phi_psi,omega_psi,omega_phi>_allowed*: True/False. False if the likelihood for the given pair of angles is not within the 95th percentile threshold.
 
-Installation
-------------
 
-.. code-block:: console
-
-    $ pip install isopeptor
-
-Usage
------
+Installation and Usage
+----------------------
 
 .. toctree::
 
+   installation
    commandline
    api
 
