@@ -34,7 +34,7 @@ class Isopeptide:
             isopeptide_bonds (list): stores isopeptide bonds as BondElement elements
             fixed_r_asa (float | None): which ranges between 0 and 1 that fixes r_asa allowing to skip its calculation
 
-        Examples:
+        Example:
             
             Use a fixed solvent accessible area for a quick prediction:
             >>> from isopeptor.isopeptide import Isopeptide
@@ -249,7 +249,7 @@ class Isopeptide:
         
             Get geometry measures (bond length and dihedral angles and map to existing distribution of measures from 
             the database of PDB derived structures)
-            
+
             Example:
                 >>> from isopeptor.isopeptide import Isopeptide
                 >>> i = Isopeptide("tests/data/test_structures", distance=1.5, fixed_r_asa=0.1)
