@@ -3,7 +3,7 @@
 
 """
 
-    Run isopeptide bond prediction from command line
+    Run isopeptide bond prediction from command line.
 
 """
 

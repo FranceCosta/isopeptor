@@ -4,8 +4,9 @@ Isopeptor Documentation
 Python package for the detection of intamolecular isopeptide bonds in protein structures.  
 The method described in **Isopeptor: a tool for detecting intramolecular isopeptide bonds in protein structures**.
 
-.. image:: https://github.com/user-attachments/assets/0778c7d3-23e0-4936-ad49-1342f89c98a9
-   :alt: Description of the image
+.. image:: figures/f2.png
+   :name: Figure 1. 
+   :alt: Isopeptor workflow.
    :width: 600px
 
 Intramolecular Isopeptide bonds
@@ -48,8 +49,14 @@ outside the 95th percentile distribution of values from our database.
     
 .. note::
     Isopeptide bond angles have been named after the peptide-bond dihedral angles nomenclature: 
-    pseudo φ is the angle around the bond between Asp/AsnCβ and Asp/AsnCγ, ω between Asp/AsnCγ and LysNζ bond, 
-    and ψ between  LysNζ and LysCε bond.
+    pseudo φ is the angle around the bond between Asp/AsnCβ and Asp/Asn`Cγ`, ω between Asp/Asn`Cγ` and Lys`Nζ` bond, 
+    and ψ between  Lys`Nζ` and Lys`Cε` bond.
+
+Output
+------
+Isopeptor output consists of the follwoing fields:
+* 
+
 
 Installation
 ------------
