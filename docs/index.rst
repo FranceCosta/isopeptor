@@ -11,8 +11,14 @@ When found in β-sandwich folds, they occur in CnaA domains (linking β-strands 
 CnaB domains (linking adjacent β-strands of the same β-sheet). 
 They stabilize protein structures against various stresses.
 
+.. note::
+ 
+   *Inter*-molecular isopeptide bonds lack the asp/glu catalytic residue and therefore 
+   can not be detected by isopeptor which has been designed to predict the presence of intramolecular isopeptide bonds
+   by detecting all three residues involved in the formation of the bond.
+
 Documentation
-------------------
+-------------
 
 .. toctree::
 
