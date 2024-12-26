@@ -52,8 +52,8 @@ Isopeptor can optionally evaluate the quality of intramolecular isopeptide bonds
 
 .. note::
     Isopeptide bond angles have been named after the peptide-bond dihedral angles nomenclature: 
-    pseudo φ is the angle around the bond between Asp/Asn\ :sub:`Cβ`\  and Asp/Asn\ :sub:`Cγ`\, ω between Asp/Asn\ :sub:`Cγ`\ 
-     and Lys\ :sub:`Nζ`\ bond, and ψ between  Lys\ :sub:`Nζ`\  and Lys\ :sub:`Cε`\  ond.
+    pseudo φ is the angle around the bond between Asp/Asn\ :sub:`Cβ` and Asp/Asn\ :sub:`Cγ`, ω between Asp/Asn\ :sub:`Cγ` 
+    and Lys\ :sub:`Nζ` bond, and ψ between  Lys\ :sub:`Nζ` and Lys\ :sub:`Cε` bond.
 
 Output
 ------

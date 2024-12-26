@@ -18,5 +18,5 @@ If you use isopeptor, please cite:
 	URL = {https://www.biorxiv.org/content/early/2024/12/25/2024.12.24.630248},
 	eprint = {https://www.biorxiv.org/content/early/2024/12/25/2024.12.24.630248.full.pdf},
 	journal = {bioRxiv}
-}
+    }
 
