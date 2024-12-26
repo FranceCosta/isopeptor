@@ -7,7 +7,8 @@ If you have any questions, submit them here: `https://github.com/FranceCosta/iso
 
 If you use isopeptor, please cite:
 
-.. code-block::
+.. code-block:: bibtex
+    
     @article {Costa2024.12.24.630248,
 	author = {Costa, Francesco and Barringer, Rob and Riziotis, Ioannis and Andreeva, Antonina and Bateman, Alex},
 	title = {Isopeptor: a tool for detecting intramolecular isopeptide bonds in protein structures},
