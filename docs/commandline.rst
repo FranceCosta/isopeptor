@@ -64,4 +64,4 @@ Full command line options are:
 
     To run a geometric evaluation use the `--eval_geometry` flag. 
     This will report bond length, dihedral angles (pseudo-psi,phi and psi) and statistical measures. 
-    See the :ref:`Workflow:Geometric evaluation` section for more information.
+    See the :ref:`workflow:Geometric evaluation` section for more information.
