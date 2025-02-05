@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "isopeptor"
-version = "0.0.76"
+version = "0.0.77"
 description = "Package for isopeptide bond prediction and analysis based on pyjess"
 authors = ["Francesco Costa <fcosta@ebi.ac.uk>"]
 license = "MIT"

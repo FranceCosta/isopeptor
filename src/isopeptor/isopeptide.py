@@ -198,6 +198,9 @@ class Isopeptide:
                 >>> i = Isopeptide("tests/data/test_structures", distance=1.5, fixed_r_asa=0.1)
                 >>> i.predict()
                 >>> i.save_csv()
+                >>> # Or with geometry evaluation
+                >>> i.get_geometry()
+                >>> i.save_csv()
         
         """
         with open(output_table, "wt") as fh:
@@ -211,11 +214,12 @@ class Isopeptide:
                 if len(self.isopeptide_bonds) > 0:
                     for bond in self.isopeptide_bonds:
                         row = [
-                            bond.protein_name, str(bond.probability), str(bond.chain), str(bond.r1_bond), 
-                            str(bond.r_cat), str(bond.r2_bond), 
+                            bond.protein_name, bond.probability, bond.chain, bond.r1_bond, 
+                            bond.r_cat, bond.r2_bond, 
                             bond.r1_bond_name, bond.r_cat_name, bond.r2_bond_name, bond.bond_type,
-                            str(bond.rmsd), str(bond.r_asa), bond.template
+                            bond.rmsd, bond.r_asa, bond.template
                         ]
+                        row = [str(i) for i in row]
                         formatted_row = ",".join(row)
                         fh.write(formatted_row+"\n")
             else:
@@ -233,15 +237,16 @@ class Isopeptide:
                     fh.write(formatted_header+"\n")
                     for bond in self.isopeptide_bonds:
                         row = [
-                            bond.protein_name, str(bond.probability), str(bond.chain), 
-                            str(bond.r1_bond), str(bond.r_cat), str(bond.r2_bond), 
+                            bond.protein_name, bond.probability, bond.chain, 
+                            bond.r1_bond, bond.r_cat, bond.r2_bond, 
                             bond.r1_bond_name, bond.r_cat_name, bond.r2_bond_name, bond.bond_type,
-                            str(bond.rmsd), str(bond.r_asa), bond.template, str(bond.bond_length), 
-                            str(bond.bond_length_zscore), str(bond.bond_length_allowed),
-                            str(bond.pseudo_phi), str(bond.pseudo_psi), str(bond.pseudo_omega), 
-                            str(bond.phi_psi_likelihood), str(bond.phi_psi_allowed), str(bond.omega_psi_likelihood),
-                            str(bond.omega_psi_allowed), str(bond.omega_phi_likelihood), str(bond.omega_phi_allowed)
+                            bond.rmsd, bond.r_asa, bond.template, bond.bond_length, 
+                            bond.bond_length_zscore, bond.bond_length_allowed,
+                            bond.pseudo_phi, bond.pseudo_psi, bond.pseudo_omega, 
+                            bond.phi_psi_likelihood, bond.phi_psi_allowed, bond.omega_psi_likelihood,
+                            bond.omega_psi_allowed, bond.omega_phi_likelihood, bond.omega_phi_allowed
                         ]
+                        row = [str(i) for i in row]
                         formatted_row = ",".join(row)
                         fh.write(formatted_row+"\n")
 
