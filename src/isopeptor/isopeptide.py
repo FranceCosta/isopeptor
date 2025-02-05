@@ -237,10 +237,10 @@ class Isopeptide:
                             str(bond.r1_bond), str(bond.r_cat), str(bond.r2_bond), 
                             bond.r1_bond_name, bond.r_cat_name, bond.r2_bond_name, bond.bond_type,
                             str(bond.rmsd), str(bond.r_asa), bond.template, str(bond.bond_length), 
-                            str(bond.bond_length_zscore), bond.bond_length_allowed,
+                            str(bond.bond_length_zscore), str(bond.bond_length_allowed),
                             str(bond.pseudo_phi), str(bond.pseudo_psi), str(bond.pseudo_omega), 
                             str(bond.phi_psi_likelihood), str(bond.phi_psi_allowed), str(bond.omega_psi_likelihood),
-                            bond.omega_psi_allowed, bond.omega_phi_likelihood, bond.omega_phi_allowed
+                            str(bond.omega_psi_allowed), str(bond.omega_phi_likelihood), str(bond.omega_phi_allowed)
                         ]
                         formatted_row = ",".join(row)
                         fh.write(formatted_row+"\n")

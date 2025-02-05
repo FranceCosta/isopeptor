@@ -30,7 +30,7 @@ def run_jess(structure_files: str, distance: float,
             list of pyjess._jess.Hit 
 
         Rises:
-            FileNotFoundError if template or pdb/cif files are not found
+            FileNotFoundError if template files are not found
 
     """
     template_files = [str(p.resolve()) for p in Path(templates).glob("*.pdb")]
@@ -40,8 +40,8 @@ def run_jess(structure_files: str, distance: float,
     pdb_files = [p for p in structure_files if p[-4:]==".pdb"]
     cif_files = [p for p in structure_files if p[-4:]==".cif"]
 
-    if not pdb_files+cif_files:
-        raise FileNotFoundError("No PDB/CIF files found in the specified directory.")
+    #if not pdb_files+cif_files:
+    #    raise FileNotFoundError("No PDB/CIF files found in the specified directory.")
     
     # Convert
     if cif_files:
@@ -67,9 +67,10 @@ def run_jess(structure_files: str, distance: float,
     
     # Run on structures
     hits = []
-    for path in pdb_files:
-        mol = Molecule.load(path, id=path)
-        query = jess.query(mol, rmsd_threshold=rmsd_threshold, distance_cutoff=distance_cutoff, max_dynamic_distance=max_dynamic_distance)
-        hits.extend(query)
+    if pdb_files:
+        for path in pdb_files:
+            mol = Molecule.load(path, id=path)
+            query = jess.query(mol, rmsd_threshold=rmsd_threshold, distance_cutoff=distance_cutoff, max_dynamic_distance=max_dynamic_distance)
+            hits.extend(query)
 
     return hits
