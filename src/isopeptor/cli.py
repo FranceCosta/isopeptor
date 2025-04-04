@@ -26,7 +26,7 @@ parser.add_argument(
     required=False, 
     help="Specifies permissivity of jess search. The higher, the more permissive.", 
     type=float,
-    default=1.5
+    default=3
 )
 
 parser.add_argument(

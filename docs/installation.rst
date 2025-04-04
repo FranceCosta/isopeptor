@@ -5,4 +5,4 @@ Installation
 
     $ pip install isopeptor
 
-Compatible with `python>=3.10`
+Compatible with `python==3.10`

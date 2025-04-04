@@ -47,7 +47,7 @@ class Isopeptide:
             >>> i = Isopeptide("tests/data/test_structures", distance=1.5)
             >>> i.predict()
     """
-    def __init__(self, struct_dir: str, distance: float = 1.5, fixed_r_asa: float | None = None):
+    def __init__(self, struct_dir: str, distance: float = 3, fixed_r_asa: float | None = None):
         """
         
             Raises
