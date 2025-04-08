@@ -15,7 +15,8 @@ Activate it:
 
     $ conda activate isopeptor
 
-Once activated, install isopeptor with pip:
+Once the environment has been activated, install isopeptor with pip:
+
 .. code-block:: console
 
     $ pip install isopeptor
