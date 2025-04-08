@@ -70,7 +70,9 @@ def run_jess(structure_files: str, distance: float,
     if pdb_files:
         for path in pdb_files:
             mol = Molecule.load(path, id=path)
-            query = jess.query(mol, rmsd_threshold=rmsd_threshold, distance_cutoff=distance_cutoff, max_dynamic_distance=max_dynamic_distance)
+            query = jess.query(mol, rmsd_threshold=rmsd_threshold, 
+                                distance_cutoff=distance_cutoff, 
+                                max_dynamic_distance=max_dynamic_distance)
             hits.extend(query)
 
     return hits
