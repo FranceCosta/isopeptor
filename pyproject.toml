@@ -18,7 +18,7 @@ numpy = "1.*"
 biotite = "1.*"
 joblib = "1.4.*"
 scikit-learn = ">=1.5.*"
-pyjess = ">=0.3.*"
+pyjess = ">=0.3.0,<0.5.0"
 
 [tool.poetry.scripts]
 isopeptor = "isopeptor.cli:main"
